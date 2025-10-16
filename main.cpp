@@ -20,19 +20,19 @@ int main()
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // your update logic goes here
-        for(int row = 0; row < imgHeight; row++)
-        {
-            for(int col = 0; col < imgWidth; col++)
-            {
-                pixels[row * imgWidth + col] = (Color) {
-                    (uint8_t)(GetRandomValue(0, 255)),
-                    (uint8_t)(GetRandomValue(0, 255)),
-                    (uint8_t)(GetRandomValue(0, 255)),
-                    255
-                };
-            }
-        }
+        //// your update logic goes here
+        //for(int row = 0; row < imgHeight; row++)
+        //{
+        //    for(int col = 0; col < imgWidth; col++)
+        //    {
+        //        pixels[row * imgWidth + col] = (Color) {
+        //            (uint8_t)(GetRandomValue(0, 255)),
+        //            (uint8_t)(GetRandomValue(0, 255)),
+        //            (uint8_t)(GetRandomValue(0, 255)),
+        //            255
+        //        };
+        //    }
+        //}
         UpdateTexture(tex, pixels);
 
         // drawing logic goes here
