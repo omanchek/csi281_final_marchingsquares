@@ -38,7 +38,13 @@ int main()
         // drawing logic goes here
         BeginDrawing();
         ClearBackground(BLACK);
-        DrawTexture(tex, 200, 25, WHITE);
+        
+        Vector2 point1 = Vector2(100, 100);
+        Vector2 point2 = Vector2(400, 200);
+        Vector2 point3 = Vector2(800, 0);
+
+        DrawTriangleLines(point1, point2, point3, WHITE);
+
         EndDrawing();
     }
 
