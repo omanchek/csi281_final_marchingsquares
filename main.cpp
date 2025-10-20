@@ -1,6 +1,25 @@
 #include <raylib.h>
 #include <cstdint>
 
+void DrawPolgyonFromVertices(const Vector2 vertices[], const int numVertices)
+{
+   //for each vertex in shape
+   for (int i = 0; i < numVertices; i++)
+   {
+      //draw a line from this index to the next, and wrap if on the last index
+      DrawLineV(vertices[i], vertices[(i + 1) % numVertices], WHITE);
+   }
+}
+
+Vector2 shape1[] = 
+{
+   Vector2(50, 50),
+   Vector2(100, 200),
+   Vector2(400, 250),
+   Vector2(600, 200),
+   Vector2(500, 150)
+};
+
 int main()
 {
     const int screenWidth = 800;
@@ -43,7 +62,9 @@ int main()
         Vector2 point2 = Vector2(400, 200);
         Vector2 point3 = Vector2(800, 0);
 
-        DrawTriangleLines(point1, point2, point3, WHITE);
+        //DrawTriangleLines(point1, point2, point3, WHITE);
+
+        DrawPolgyonFromVertices(shape1, 5);
 
         EndDrawing();
     }
