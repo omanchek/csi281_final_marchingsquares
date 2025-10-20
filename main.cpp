@@ -2,20 +2,29 @@
 #include <raylib.h>
 #include <cstdint>
 
-bool DrawPolygonBoundingBox(const Vector2 vertices[], const int numVertices)
+void DrawConnectingBoundingBox(std::pair<Vector2, Vector2> inLeft, std::pair<Vector2, Vector2> inRight, Color color)
+{
+   Vector2 midStart = Vector2(inLeft.first.x + inLeft.second.x, std::min(inLeft.first.y, inRight.first.y));
+   int midWidth = inRight.first.x - (inLeft.first.x + inLeft.second.x);
+   int midHeight = std::max(inLeft.first.y + inLeft.second.y, inRight.first.y + inRight.second.y) -
+                   std::min(inLeft.first.y, inRight.first.y);
+   DrawRectangleLines(midStart.x, midStart.y, midWidth, midHeight, color);
+}
+
+std::pair<Vector2, Vector2> DrawPolygonBoundingBox(const Vector2 vertices[], const int start, const int end, Color color)
 {
    //check if any vertices to use
-   if (numVertices > 0)
+   if (end - start > 0)
    {
       //create trackers for best results in all directions
       int maxX, maxY, minX, minY;
 
       //init best results to first vertex data
-      maxX = minX = vertices[0].x;
-      maxY = minY = vertices[0].y;
+      maxX = minX = vertices[start].x;
+      maxY = minY = vertices[start].y;
 
       //loop through remaining vertices
-      for (int i = 1; i < numVertices; i++)
+      for (int i = start; i < end; i++)
       {
          //check both mins and maxs to see if new ones are found
          if (vertices[i].x < minX) minX = vertices[i].x; //minX
@@ -25,13 +34,14 @@ bool DrawPolygonBoundingBox(const Vector2 vertices[], const int numVertices)
       }
 
       //once all vertices have been evaluated, draw the final box
-      DrawRectangleLines(minX, minY, maxX - minX, maxY - minY, RED);
+      DrawRectangleLines(minX, minY, maxX - minX, maxY - minY, color);
 
-      return true;
+      //return the size of the bounding box generated
+      return std::pair<Vector2, Vector2>(Vector2(minX, minY), Vector2(maxX - minX, maxY - minY));
    }
    else
    {
-      return false;
+      return std::pair<Vector2, Vector2>(Vector2(0, 0), Vector2(0,0));
    }
 }
 
@@ -49,9 +59,24 @@ Vector2 shape1[] =
 {
    Vector2(50, 50),
    Vector2(100, 200),
-   //Vector2(400, 250),
-   //Vector2(600, 200),
+   Vector2(150, 100),
+   Vector2(200, 350),
+   Vector2(300, 200),
+   Vector2(400, 250),
+   Vector2(600, 200),
    Vector2(500, 150)
+};
+
+Vector2 shape1Sorted[] =
+{
+   Vector2(50, 50),
+   Vector2(100, 200),
+   Vector2(150, 100),
+   Vector2(200, 350),
+   Vector2(300, 200),
+   Vector2(400, 250),
+   Vector2(500, 150),
+   Vector2(600, 200)
 };
 
 int main()
@@ -65,46 +90,45 @@ int main()
 
     SetTargetFPS(60);
 
-    Image img = GenImageColor(imgHeight, imgHeight, WHITE);
-    ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
-    auto pixels = (Color*)img.data;
-    Texture tex = LoadTextureFromImage(img);
-
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        //// your update logic goes here
-        //for(int row = 0; row < imgHeight; row++)
-        //{
-        //    for(int col = 0; col < imgWidth; col++)
-        //    {
-        //        pixels[row * imgWidth + col] = (Color) {
-        //            (uint8_t)(GetRandomValue(0, 255)),
-        //            (uint8_t)(GetRandomValue(0, 255)),
-        //            (uint8_t)(GetRandomValue(0, 255)),
-        //            255
-        //        };
-        //    }
-        //}
-        UpdateTexture(tex, pixels);
-
         // drawing logic goes here
         BeginDrawing();
         ClearBackground(BLACK);
-        
-        Vector2 point1 = Vector2(100, 100);
-        Vector2 point2 = Vector2(400, 200);
-        Vector2 point3 = Vector2(800, 0);
 
-        //DrawTriangleLines(point1, point2, point3, WHITE);
+        DrawPolgyonFromVertices(shape1, 8);
+        std::pair<Vector2, Vector2> boxSpecs = DrawPolygonBoundingBox(shape1Sorted, 0, 8, RED);
+        std::pair<Vector2, Vector2> lhs = DrawPolygonBoundingBox(shape1Sorted, 0, 4, ORANGE);
+        std::pair<Vector2, Vector2> rhs = DrawPolygonBoundingBox(shape1Sorted, 4, 8, ORANGE);
+        DrawConnectingBoundingBox(lhs, rhs, ORANGE);
 
-        DrawPolgyonFromVertices(shape1, 3);
-        DrawPolygonBoundingBox(shape1, 3);
+        lhs = DrawPolygonBoundingBox(shape1Sorted, 0, 2, YELLOW);
+        rhs = DrawPolygonBoundingBox(shape1Sorted, 2, 4, YELLOW);
+        DrawConnectingBoundingBox(lhs, rhs, YELLOW);
+
+        lhs = DrawPolygonBoundingBox(shape1Sorted, 0, 1, GREEN);
+        rhs = DrawPolygonBoundingBox(shape1Sorted, 1, 2, GREEN);
+        DrawConnectingBoundingBox(lhs, rhs, GREEN);
+
+        lhs = DrawPolygonBoundingBox(shape1Sorted, 2, 3, GREEN);
+        rhs = DrawPolygonBoundingBox(shape1Sorted, 3, 4, GREEN);
+        DrawConnectingBoundingBox(lhs, rhs, GREEN);
+
+        lhs = DrawPolygonBoundingBox(shape1Sorted, 4, 6, YELLOW);
+        rhs = DrawPolygonBoundingBox(shape1Sorted, 6, 8, YELLOW);
+        DrawConnectingBoundingBox(lhs, rhs, YELLOW);
+
+        lhs = DrawPolygonBoundingBox(shape1Sorted, 4, 5, GREEN);
+        rhs = DrawPolygonBoundingBox(shape1Sorted, 5, 6, GREEN);
+        DrawConnectingBoundingBox(lhs, rhs, GREEN);
+
+        lhs = DrawPolygonBoundingBox(shape1Sorted, 6, 7, GREEN);
+        rhs = DrawPolygonBoundingBox(shape1Sorted, 7, 8, GREEN);
+        DrawConnectingBoundingBox(lhs, rhs, GREEN);
 
         EndDrawing();
     }
-
-    UnloadTexture(tex);
 
     CloseWindow();
     return 0;
