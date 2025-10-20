@@ -1,5 +1,39 @@
+#include <iostream>
 #include <raylib.h>
 #include <cstdint>
+
+bool DrawPolygonBoundingBox(const Vector2 vertices[], const int numVertices)
+{
+   //check if any vertices to use
+   if (numVertices > 0)
+   {
+      //create trackers for best results in all directions
+      int maxX, maxY, minX, minY;
+
+      //init best results to first vertex data
+      maxX = minX = vertices[0].x;
+      maxY = minY = vertices[0].y;
+
+      //loop through remaining vertices
+      for (int i = 1; i < numVertices; i++)
+      {
+         //check both mins and maxs to see if new ones are found
+         if (vertices[i].x < minX) minX = vertices[i].x; //minX
+         if (vertices[i].x > maxX) maxX = vertices[i].x; //maxX
+         if (vertices[i].y < minY) minY = vertices[i].y; //minY
+         if (vertices[i].y > maxY) maxY = vertices[i].y; //maxY
+      }
+
+      //once all vertices have been evaluated, draw the final box
+      DrawRectangleLines(minX, minY, maxX - minX, maxY - minY, RED);
+
+      return true;
+   }
+   else
+   {
+      return false;
+   }
+}
 
 void DrawPolgyonFromVertices(const Vector2 vertices[], const int numVertices)
 {
@@ -15,8 +49,8 @@ Vector2 shape1[] =
 {
    Vector2(50, 50),
    Vector2(100, 200),
-   Vector2(400, 250),
-   Vector2(600, 200),
+   //Vector2(400, 250),
+   //Vector2(600, 200),
    Vector2(500, 150)
 };
 
@@ -64,7 +98,8 @@ int main()
 
         //DrawTriangleLines(point1, point2, point3, WHITE);
 
-        DrawPolgyonFromVertices(shape1, 5);
+        DrawPolgyonFromVertices(shape1, 3);
+        DrawPolygonBoundingBox(shape1, 3);
 
         EndDrawing();
     }
