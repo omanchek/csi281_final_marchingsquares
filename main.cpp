@@ -165,18 +165,21 @@ int main()
         //DrawTriangleLines(topMiddle, vertex2, leftMiddle, PINK);
 
         // Square value 6
-        //DrawRectangleLines(bottomMiddle.x, topMiddle.y, (width / 2), height, PINK);
+        //DrawRectangle(bottomMiddle.x, topMiddle.y, (width / 2), height, PINK);
 
         // Square value 7
         //DrawTriangleLines(topMiddle, vertex2, leftMiddle, PINK);
 
         // Square value 8
-        DrawRectangle(xPos, yPos, width, height, PINK);
-        DrawTriangle(topMiddle, vertex2, leftMiddle, BLACK);
+        //DrawRectangle(xPos, yPos, width, height, PINK);
+        //DrawTriangle(topMiddle, vertex2, leftMiddle, BLACK);
 
         // Square value 9
+        //DrawRectangle((bottomMiddle.x - (bottomMiddle.x / 2)), topMiddle.y, (width / 2), height, PINK);
 
         // Square value 10
+        DrawTriangleLines(topMiddle, vertex4, rightMiddle, PINK);
+        DrawTriangleLines(leftMiddle, vertex1, bottomMiddle, PINK);
 
         // Square value 11
 
