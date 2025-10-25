@@ -127,23 +127,26 @@ int main()
         rhs = DrawPolygonBoundingBox(shape1Sorted, 7, 8, GREEN);
         DrawConnectingBoundingBox(lhs, rhs, GREEN);
 
+        // Base dimensions for the square
         float xPos = 200;
         float yPos = 25;
         float width = 400;
         float height = 400;
+
+        // Verticies of the purple square
 
         Vector2 vertex1 = Vector2((xPos), (height + yPos)); // Bottom left
         Vector2 vertex2 = Vector2((xPos), (yPos)); // Top left
         Vector2 vertex3 = Vector2((xPos + width), (height + yPos)); // Bottom right
         Vector2 vertex4 = Vector2((xPos + xPos), (yPos)); // Top right
 
+        // Mid points for each side of the square
         Vector2 bottomMiddle = Vector2((xPos + xPos), height + yPos);
         Vector2 topMiddle = Vector2((xPos + xPos), yPos);
         Vector2 leftMiddle = Vector2(xPos, (height / 2));
         Vector2 rightMiddle = Vector2(xPos + width, (height / 2));
 
-
-        DrawRectangleLines(xPos, yPos, width, height, PURPLE);
+        DrawRectangleLines(xPos, yPos, width, height, SKYBLUE);
         
         //Square Value 1
         //DrawTriangleLines(leftMiddle, vertex1, bottomMiddle, PINK);
@@ -152,7 +155,19 @@ int main()
         //DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
 
         // Square Value 3
-        DrawRectangleLines(leftMiddle.x, leftMiddle.y, width, ((height / 2) + yPos), PINK);
+        //DrawRectangleLines(leftMiddle.x, leftMiddle.y, width, ((height / 2) + yPos), PINK);
+
+        // Square value 4
+        //DrawTriangleLines(topMiddle, vertex4, rightMiddle, PINK);
+
+        // Square value 5
+        DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
+        DrawTriangleLines(topMiddle, vertex2, leftMiddle, PINK);
+
+        // Square value 6
+
+        //Square value 7
+        DrawTriangleLines(topMiddle, vertex2, leftMiddle, PINK);
 
         EndDrawing();
     }
