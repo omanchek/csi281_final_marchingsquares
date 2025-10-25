@@ -132,7 +132,7 @@ int main()
         float width = 400;
         float height = 400;
 
-        Vector2 vertex1 = Vector2((xPos), (height)); // Bottom left
+        Vector2 vertex1 = Vector2((xPos), (height + yPos)); // Bottom left
         Vector2 vertex2 = Vector2((xPos), (yPos)); // Top left
         Vector2 vertex3 = Vector2((xPos + width), (height + yPos)); // Bottom right
         Vector2 vertex4 = Vector2((xPos + xPos), (yPos)); // Top right
@@ -144,6 +144,11 @@ int main()
 
 
         DrawRectangleLines(xPos, yPos, width, height, PURPLE);
+        
+        //Square Value 1
+        DrawTriangleLines(leftMiddle, vertex1, bottomMiddle, PINK);
+
+        // Square Value 2
         DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
 
         EndDrawing();
