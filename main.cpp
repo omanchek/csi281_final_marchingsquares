@@ -146,10 +146,13 @@ int main()
         DrawRectangleLines(xPos, yPos, width, height, PURPLE);
         
         //Square Value 1
-        DrawTriangleLines(leftMiddle, vertex1, bottomMiddle, PINK);
+        //DrawTriangleLines(leftMiddle, vertex1, bottomMiddle, PINK);
 
         // Square Value 2
-        DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
+        //DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
+
+        // Square Value 3
+        DrawRectangleLines(leftMiddle.x, leftMiddle.y, width, ((height / 2) + yPos), PINK);
 
         EndDrawing();
     }
