@@ -127,6 +127,25 @@ int main()
         rhs = DrawPolygonBoundingBox(shape1Sorted, 7, 8, GREEN);
         DrawConnectingBoundingBox(lhs, rhs, GREEN);
 
+        float xPos = 200;
+        float yPos = 25;
+        float width = 400;
+        float height = 400;
+
+        Vector2 vertex1 = Vector2((xPos), (height)); // Bottom left
+        Vector2 vertex2 = Vector2((xPos), (yPos)); // Top left
+        Vector2 vertex3 = Vector2((xPos + width), (height + yPos)); // Bottom right
+        Vector2 vertex4 = Vector2((xPos + xPos), (yPos)); // Top right
+
+        Vector2 bottomMiddle = Vector2((xPos + xPos), height + yPos);
+        Vector2 topMiddle = Vector2((xPos + xPos), yPos);
+        Vector2 leftMiddle = Vector2(xPos, (height / 2));
+        Vector2 rightMiddle = Vector2(xPos + width, (height / 2));
+
+
+        DrawRectangleLines(xPos, yPos, width, height, PURPLE);
+        DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
+
         EndDrawing();
     }
 

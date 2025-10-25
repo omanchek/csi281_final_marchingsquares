@@ -8,12 +8,19 @@ class Cell : public Square
    public:
       Cell();
       ~Cell();
+      void DrawValueOne();
 
    private:
-      float bottomLeft = 0;
-      float bottomRight = 0;
-      float topLeft = 0;
-      float topRight = 0;
+      //NICHOLAS NOTE: Changed these to vectors. I believe this will be better in the future
+      Vector2 bottomLeft;
+      Vector2 bottomRight;
+      Vector2 topLeft;
+      Vector2 topRight;
+
+      Vector2 bottomCenter;
+      Vector2 leftCenter;
+      Vector2 topCenter;
+      Vector2 rightCenter;
 };
 
 #endif
