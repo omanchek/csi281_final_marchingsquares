@@ -127,6 +127,10 @@ int main()
         rhs = DrawPolygonBoundingBox(shape1Sorted, 7, 8, GREEN);
         DrawConnectingBoundingBox(lhs, rhs, GREEN);
 
+
+        // Implementations for the different types of squares
+        // Uncomment below to use implementation
+        /*
         // Base dimensions for the square
         float xPos = 200;
         float yPos = 25;
@@ -138,7 +142,7 @@ int main()
         Vector2 vertex1 = Vector2((xPos), (height + yPos)); // Bottom left
         Vector2 vertex2 = Vector2((xPos), (yPos)); // Top left
         Vector2 vertex3 = Vector2((xPos + width), (height + yPos)); // Bottom right
-        Vector2 vertex4 = Vector2((xPos + xPos), (yPos)); // Top right
+        Vector2 vertex4 = Vector2((xPos + width), (yPos)); // Top right
 
         // Mid points for each side of the square
         Vector2 bottomMiddle = Vector2((xPos + xPos), height + yPos);
@@ -149,26 +153,27 @@ int main()
         DrawRectangleLines(xPos, yPos, width, height, SKYBLUE);
         
         //Square Value 1
-        //DrawTriangleLines(leftMiddle, vertex1, bottomMiddle, PINK);
+        DrawTriangle(leftMiddle, vertex1, bottomMiddle, PINK);
 
         // Square Value 2
-        //DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
+        //DrawTriangle(bottomMiddle, vertex3, rightMiddle, PINK);
 
         // Square Value 3
         //DrawRectangle(leftMiddle.x, leftMiddle.y, width, ((height / 2) + yPos), PINK);
 
-        // Square value 4
+        // Square value 4 *NOTE: FIGURE OUT WHY I CAN'T JUST DRAW A TRIANGLE AND HAVE TO USE TRIANGLE LINES HERE
         //DrawTriangleLines(topMiddle, vertex4, rightMiddle, PINK);
 
         // Square value 5
-        //DrawTriangleLines(bottomMiddle, vertex3, rightMiddle, PINK);
-        //DrawTriangleLines(topMiddle, vertex2, leftMiddle, PINK);
+        //DrawRectangle(xPos, yPos, width, height, PINK);
+        //DrawTriangle(bottomMiddle, vertex3, rightMiddle, BLACK);
+        //DrawTriangle(topMiddle, vertex2, leftMiddle, BLACK);
 
         // Square value 6
         //DrawRectangle(bottomMiddle.x, topMiddle.y, (width / 2), height, PINK);
 
         // Square value 7
-        //DrawTriangleLines(topMiddle, vertex2, leftMiddle, PINK);
+       //DrawTriangle(topMiddle, vertex2, leftMiddle, PINK);
 
         // Square value 8
         //DrawRectangle(xPos, yPos, width, height, PINK);
@@ -177,11 +182,12 @@ int main()
         // Square value 9
         //DrawRectangle((bottomMiddle.x - (bottomMiddle.x / 2)), topMiddle.y, (width / 2), height, PINK);
 
-        // Square value 10
-        //DrawTriangleLines(topMiddle, vertex4, rightMiddle, PINK);
-        //DrawTriangleLines(leftMiddle, vertex1, bottomMiddle, PINK);
+        // Square value 10 *NOTE: CHECK THIS ONE FOR ERROR WITH BLACK TRIANGLE 4 VALUE
+        //DrawRectangle(xPos, yPos, width, height, PINK);
+        //DrawTriangleLines(topMiddle, vertex4, rightMiddle, BLACK);
+        //DrawTriangle(leftMiddle, vertex1, bottomMiddle, BLACK);
 
-        // Square value 11
+        // Square value 11 *NOTE: CHECK THIS ONE FOR ERROR WITH BLACK TRIANGLE 4 VALUE
         //DrawRectangle(xPos, yPos, width, height, PINK);
         //DrawTriangleLines(rightMiddle, topMiddle, vertex4, BLACK);
 
@@ -198,7 +204,7 @@ int main()
         //DrawTriangle(leftMiddle, vertex1, bottomMiddle, BLACK);
 
         // Square value 15
-        DrawRectangle(xPos, yPos, width, height, PINK);
+        //DrawRectangle(xPos, yPos, width, height, PINK);*/
 
         EndDrawing();
     }
