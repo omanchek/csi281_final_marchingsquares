@@ -22,3 +22,23 @@ Square::~Square()
 {
 
 }
+
+Vector2 Square::GetBottomLeft()
+{
+   return bottomLeft;
+}
+
+Vector2 Square::GetBottomRight()
+{
+   return Vector2(topRight.x, bottomLeft.y);
+}
+
+Vector2 Square::GetTopLeft()
+{
+   return Vector2(bottomLeft.x, topRight.y);
+}
+
+Vector2 Square::GetTopRight()
+{
+   return topRight;
+}

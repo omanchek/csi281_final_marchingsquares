@@ -1,6 +1,7 @@
 #include <iostream>
 #include <raylib.h>
 #include <cstdint>
+#include "assets/Cell.h"
 
 void DrawConnectingBoundingBox(std::pair<Vector2, Vector2> inLeft, std::pair<Vector2, Vector2> inRight, Color color)
 {
@@ -94,6 +95,7 @@ int main()
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // drawing logic goes here
+        /*
         BeginDrawing();
         ClearBackground(BLACK);
 
@@ -126,11 +128,11 @@ int main()
         lhs = DrawPolygonBoundingBox(shape1Sorted, 6, 7, GREEN);
         rhs = DrawPolygonBoundingBox(shape1Sorted, 7, 8, GREEN);
         DrawConnectingBoundingBox(lhs, rhs, GREEN);
-
+        */
 
         // Implementations for the different types of squares
         // Uncomment below to use implementation
-        /*
+        
         // Base dimensions for the square
         float xPos = 200;
         float yPos = 25;
@@ -153,16 +155,16 @@ int main()
         DrawRectangleLines(xPos, yPos, width, height, SKYBLUE);
         
         //Square Value 1
-        DrawTriangle(leftMiddle, vertex1, bottomMiddle, PINK);
+        //DrawTriangle(leftMiddle, vertex1, bottomMiddle, PINK);
 
-        // Square Value 2
+        //Square Value 2
         //DrawTriangle(bottomMiddle, vertex3, rightMiddle, PINK);
 
         // Square Value 3
         //DrawRectangle(leftMiddle.x, leftMiddle.y, width, ((height / 2) + yPos), PINK);
 
         // Square value 4 *NOTE: FIGURE OUT WHY I CAN'T JUST DRAW A TRIANGLE AND HAVE TO USE TRIANGLE LINES HERE
-        //DrawTriangleLines(topMiddle, vertex4, rightMiddle, PINK);
+        //DrawTriangle(topMiddle, vertex4, rightMiddle, PINK);
 
         // Square value 5
         //DrawRectangle(xPos, yPos, width, height, PINK);
@@ -205,6 +207,8 @@ int main()
 
         // Square value 15
         //DrawRectangle(xPos, yPos, width, height, PINK);*/
+
+        Cell cell = Cell(vertex1, vertex4);
 
         EndDrawing();
     }

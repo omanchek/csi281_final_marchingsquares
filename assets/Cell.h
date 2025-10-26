@@ -3,19 +3,19 @@
 
 #include "Square.h"
 
+const int NUM_CASES = 16;
+
 class Cell : public Square
 {
    public:
       Cell();
+      Cell(Vector2 inBottomLeft, Vector2 inTopRight);
       ~Cell();
       void DrawValueOne();
 
+      bool DrawCellByCase(unsigned int caseValue);
+
    private:
-      //NICHOLAS NOTE: Changed these to vectors. I believe this will be better in the future
-      Vector2 bottomLeft;
-      Vector2 bottomRight;
-      Vector2 topLeft;
-      Vector2 topRight;
 
       Vector2 bottomCenter;
       Vector2 leftCenter;

@@ -11,6 +11,12 @@ class Square
       Square(Vector2 inBottomLeft, float inHeight, float inWidth);
       ~Square();
 
+      //accessors
+      Vector2 GetBottomLeft();
+      Vector2 GetBottomRight();
+      Vector2 GetTopLeft();
+      Vector2 GetTopRight();
+
    protected:
       Vector2 bottomLeft;
       Vector2 topRight;
