@@ -37,7 +37,7 @@ void Cell::DrawValueOne()
     DrawCircle(bottomCenter.x, bottomCenter.y, 10, BLUE);
     DrawCircle(leftCenter.x, leftCenter.y, 10, BLUE);
     DrawCircle(topCenter.x, topCenter.y, 10, BLUE);
-    DrawCircleLines(topCenter.x, topCenter.y, 10, BLUE);
+    DrawCircle(topCenter.x, topCenter.y, 10, BLUE);
 }
 
 bool Cell::DrawCellByCase(unsigned int caseValue)
@@ -55,7 +55,9 @@ bool Cell::DrawCellByCase(unsigned int caseValue)
         break;
 
       case 3:
-        DrawRectangle(leftCenter.x, leftCenter.y, (leftCenter.x + rightCenter.x), (((bottomCenter.y + topCenter.y)/ 2)), PINK);
+          // the 12 is to get the pink to be in the correct spot.
+        DrawRectangle(leftCenter.x, leftCenter.y, (rightCenter.x - leftCenter.x), (bottomCenter.y / 2) - 12, PINK);
+        DrawLine(bottomLeft.x, bottomLeft.y, bottomRight.x, bottomRight.y, RED);
         break;
 
       case 4:
