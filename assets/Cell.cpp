@@ -47,73 +47,78 @@ bool Cell::DrawCellByCase(unsigned int caseValue)
       case 0:
         return false;
       case 1:
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
         DrawTriangle(leftCenter, bottomLeft, bottomCenter, PINK);
         break;
 
       case 2:
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
         DrawTriangle(bottomCenter, bottomRight, rightCenter, PINK);
         break;
 
       case 3:
-          // the 12 is to get the pink to be in the correct spot.
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
         DrawRectangle(leftCenter.x, leftCenter.y, (rightCenter.x - leftCenter.x), (bottomCenter.y / 2) - 12, PINK);
-        DrawLine(bottomLeft.x, bottomLeft.y, bottomRight.x, bottomRight.y, RED);
         break;
 
       case 4:
-        DrawTriangle(topCenter, topRight, rightCenter, PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
+        DrawTriangle(topCenter, rightCenter, topRight, PINK);
         break;
 
       case 5:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomLeft.x + bottomRight.x), (bottomLeft.y + bottomRight.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
         DrawTriangle(bottomCenter, bottomRight, rightCenter, BLACK);
         DrawTriangle(topCenter, topLeft, leftCenter, BLACK);
         break;
 
       case 6:
-        DrawRectangle(bottomCenter.x, topCenter.y, ((leftCenter.x + rightCenter.x) / 2), (bottomCenter.y + topCenter.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
+        DrawRectangle(bottomCenter.x, topCenter.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), PINK);
         break;
 
       case 7:
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
         DrawTriangle(topCenter, topLeft, leftCenter, PINK);
         break;
 
       case 8:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomLeft.x + bottomRight.x), (bottomLeft.y + bottomRight.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
         DrawTriangle(topCenter, topLeft, leftCenter, BLACK);
         break;
 
       case 9:
-        DrawRectangle((bottomCenter.x - (bottomCenter.x / 2)), topCenter.y, ((bottomLeft.x + bottomRight.x) / 2), (bottomLeft.y + bottomRight.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
+        DrawRectangle(bottomLeft.x, topLeft.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), PINK);
         break;
 
       case 10:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomLeft.x + bottomRight.x), (bottomLeft.y + bottomRight.y), PINK);
-        DrawTriangleLines(topCenter, topRight, rightCenter, BLACK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
+        DrawTriangle(topCenter, rightCenter, topRight, BLACK);
         DrawTriangle(leftCenter, bottomLeft, bottomCenter, BLACK);
         break;
 
       case 11:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomLeft.x + bottomRight.x), (bottomLeft.y + bottomRight.y), PINK);
-        DrawTriangleLines(rightCenter, topCenter, topRight, BLACK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
+        DrawTriangle(topCenter, rightCenter, topRight, BLACK);
         break;
 
       case 12:
-        DrawRectangle(leftCenter.x, topCenter.y, (bottomLeft.x + bottomRight.x), (((bottomLeft.y + bottomRight.y) / 2)), PINK);
+        DrawRectangle(topLeft.x, topRight.y, (rightCenter.x - leftCenter.x), (bottomCenter.y / 2) - 12, PINK);
         break;
 
       case 13:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomLeft.x + bottomRight.x), (bottomLeft.y + bottomRight.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
         DrawTriangle(bottomCenter, bottomRight, rightCenter, BLACK);
         break;
 
       case 14:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomLeft.x + bottomRight.x), (bottomLeft.y + bottomRight.y), PINK);
+          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
           DrawTriangle(leftCenter, bottomLeft, bottomCenter, BLACK);
           break;
 
       case 15:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomLeft.x + bottomRight.x), (bottomLeft.y + bottomRight.y), PINK);
+          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
           break;
 
       default:
