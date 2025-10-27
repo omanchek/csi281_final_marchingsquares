@@ -19,6 +19,8 @@ class Square
 
    protected:
       Vector2 bottomLeft;
+      Vector2 bottomRight;
+      Vector2 topLeft;
       Vector2 topRight;
 };
 

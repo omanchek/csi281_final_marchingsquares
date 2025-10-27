@@ -209,6 +209,7 @@ int main()
         //DrawRectangle(xPos, yPos, width, height, PINK);*/
 
         Cell cell = Cell(vertex1, vertex4);
+        cell.DrawValueOne();
 
         EndDrawing();
     }

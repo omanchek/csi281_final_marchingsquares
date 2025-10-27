@@ -16,7 +16,6 @@ class Cell : public Square
       bool DrawCellByCase(unsigned int caseValue);
 
    private:
-
       Vector2 bottomCenter;
       Vector2 leftCenter;
       Vector2 topCenter;
