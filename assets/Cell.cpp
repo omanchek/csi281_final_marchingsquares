@@ -16,10 +16,10 @@ Cell::Cell(Vector2 inBottomLeft, Vector2 inTopRight)
    topLeft = Vector2(bottomLeft.x, topRight.y);
 
    //Set up centeres of the cell
-   bottomCenter = Vector2((bottomRight.x / 2), bottomRight.y);
-   leftCenter = Vector2((topLeft.x), (topLeft.y / 2));
-   topCenter = Vector2((topRight.x / 2), topRight.y);
-   rightCenter = Vector2((topRight.x), (topRight.y / 2));
+   bottomCenter = Vector2((bottomRight.x + bottomLeft.x)/2, bottomRight.y);
+   leftCenter = Vector2((topLeft.x), ((topLeft.y + bottomLeft.y) / 2));
+   topCenter = Vector2(((topRight.x + topLeft.x) / 2), topRight.y);
+   rightCenter = Vector2((topRight.x), ((topRight.y + bottomRight.y) / 2));
 }
 
 Cell::~Cell()
@@ -33,6 +33,11 @@ void Cell::DrawValueOne()
     DrawCircle(bottomRight.x, bottomRight.y, 10, GREEN);
     DrawCircle(topLeft.x, topLeft.y, 10, GREEN);
     DrawCircle(topRight.x, topRight.y, 10, GREEN);
+
+    DrawCircle(bottomCenter.x, bottomCenter.y, 10, BLUE);
+    DrawCircle(leftCenter.x, leftCenter.y, 10, BLUE);
+    DrawCircle(topCenter.x, topCenter.y, 10, BLUE);
+    DrawCircleLines(topCenter.x, topCenter.y, 10, BLUE);
 }
 
 bool Cell::DrawCellByCase(unsigned int caseValue)

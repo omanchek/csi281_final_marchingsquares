@@ -210,6 +210,7 @@ int main()
 
         Cell cell = Cell(vertex1, vertex4);
         cell.DrawValueOne();
+        cell.DrawCellByCase(1);
 
         EndDrawing();
     }
