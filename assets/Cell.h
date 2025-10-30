@@ -13,7 +13,7 @@ class Cell : public Square
       ~Cell();
       void DrawValueOne();
 
-      bool DrawCellByCase(unsigned int caseValue);
+      bool DrawCellByCase(unsigned int caseValue, bool debugDraw);
 
    private:
       Vector2 bottomCenter;

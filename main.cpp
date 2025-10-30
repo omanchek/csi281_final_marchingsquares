@@ -209,8 +209,8 @@ int main()
         //DrawRectangle(xPos, yPos, width, height, PINK);*/
 
         Cell cell = Cell(vertex1, vertex4);
-        cell.DrawValueOne();
-        cell.DrawCellByCase(9);
+        //cell.DrawValueOne();
+        cell.DrawCellByCase(9, false);
 
         EndDrawing();
     }

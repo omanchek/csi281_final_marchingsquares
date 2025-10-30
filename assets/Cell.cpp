@@ -40,8 +40,14 @@ void Cell::DrawValueOne()
     DrawCircle(topCenter.x, topCenter.y, 10, BLUE);
 }
 
-bool Cell::DrawCellByCase(unsigned int caseValue)
+bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
 {
+   //check should draw debug outline points
+   if (debugDraw)
+   {
+      DrawValueOne();
+   }
+
    switch (caseValue)
    {
       case 0:
