@@ -1,4 +1,5 @@
 #include <iostream>
+#include "assets/Obstacle.h"
 #include <raylib.h>
 #include <cstdint>
 #include "assets/Cell.h"
@@ -152,7 +153,7 @@ int main()
         Vector2 leftMiddle = Vector2(xPos, (height / 2));
         Vector2 rightMiddle = Vector2(xPos + width, (height / 2));
 
-        DrawRectangleLines(xPos, yPos, width, height, SKYBLUE);
+        //DrawRectangleLines(xPos, yPos, width, height, SKYBLUE);
         
         //Square Value 1
         //DrawTriangle(leftMiddle, vertex1, bottomMiddle, PINK);
@@ -208,9 +209,14 @@ int main()
         // Square value 15
         //DrawRectangle(xPos, yPos, width, height, PINK);*/
 
-        Cell cell = Cell(vertex1, vertex4);
+        //Cell cell = Cell(vertex1, vertex4);
         //cell.DrawValueOne();
-        cell.DrawCellByCase(9, false);
+        //cell.DrawCellByCase(9, false);
+
+        Obstacle myShape = Obstacle(shape1, 8);
+        myShape.DrawObstacle();
+        myShape.CalculateBoundingBox();
+        myShape.DrawBoundingBox();
 
         EndDrawing();
     }

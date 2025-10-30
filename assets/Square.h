@@ -17,11 +17,17 @@ class Square
       Vector2 GetTopLeft();
       Vector2 GetTopRight();
 
+      float GetHeight();
+      float GetWidth();
+
    protected:
       Vector2 bottomLeft;
       Vector2 bottomRight;
       Vector2 topLeft;
       Vector2 topRight;
+
+      float height;
+      float width;
 };
 
 #endif
