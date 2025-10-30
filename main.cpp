@@ -83,14 +83,28 @@ Vector2 shape1Sorted[] =
 
 int main()
 {
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1080;
+    const int screenHeight = 720;
     const int imgWidth = 400;
     const int imgHeight = 400;
 
     InitWindow(screenWidth, screenHeight, "Pixel Manipulation");
 
     SetTargetFPS(60);
+
+    Vector2 b, t;
+
+    Cell** cellGrid = new Cell*[8];
+    for (int i = 0; i < 8; i++)
+    {
+       cellGrid[i] = new Cell[8];
+       for (int j = 0; j < 8; j++)
+       {
+          b = Vector2(25 + (i * 50), 25 + ((j + 1) * 50));
+          t = Vector2(25 + ((i + 1) * 50), 25 + (j * 50));
+          cellGrid[i][j] = Cell(b, t);
+       }
+    }
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -213,13 +227,29 @@ int main()
         //cell.DrawValueOne();
         //cell.DrawCellByCase(9, false);
 
-        Obstacle myShape = Obstacle(shape1, 8);
-        myShape.DrawObstacle();
-        myShape.CalculateBoundingBox();
-        myShape.DrawBoundingBox();
+        //Obstacle myShape = Obstacle(shape1, 8);
+        //myShape.DrawObstacle();
+        //myShape.CalculateBoundingBox();
+        //myShape.DrawBoundingBox();
+
+
+        for (int i = 0; i < 8; i++)
+        {
+           for (int j = 0; j < 8; j++)
+           {
+              cellGrid[i][j].DrawCellByCase(GetRandomValue(0, 15), false);
+           }
+        }
 
         EndDrawing();
     }
+
+    for (int i = 0; i < 8; i++)
+    {
+       delete[] cellGrid[i];
+    }
+
+    delete[] cellGrid;
 
     CloseWindow();
     return 0;
