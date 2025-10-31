@@ -4,6 +4,9 @@
 #include <cstdint>
 #include "assets/Cell.h"
 
+#define RAYGUI_IMPLEMENTATION
+//#include <raygui.h>
+
 void DrawConnectingBoundingBox(std::pair<Vector2, Vector2> inLeft, std::pair<Vector2, Vector2> inRight, Color color)
 {
    Vector2 midStart = Vector2(inLeft.first.x + inLeft.second.x, std::min(inLeft.first.y, inRight.first.y));
@@ -167,71 +170,6 @@ int main()
         Vector2 leftMiddle = Vector2(xPos, (height / 2));
         Vector2 rightMiddle = Vector2(xPos + width, (height / 2));
 
-        //DrawRectangleLines(xPos, yPos, width, height, SKYBLUE);
-        
-        //Square Value 1
-        //DrawTriangle(leftMiddle, vertex1, bottomMiddle, PINK);
-
-        //Square Value 2
-        //DrawTriangle(bottomMiddle, vertex3, rightMiddle, PINK);
-
-        // Square Value 3
-        //DrawRectangle(leftMiddle.x, leftMiddle.y, width, ((height / 2) + yPos), PINK);
-
-        // Square value 4 *NOTE: FIGURE OUT WHY I CAN'T JUST DRAW A TRIANGLE AND HAVE TO USE TRIANGLE LINES HERE
-        //DrawTriangle(topMiddle, vertex4, rightMiddle, PINK);
-
-        // Square value 5
-        //DrawRectangle(xPos, yPos, width, height, PINK);
-        //DrawTriangle(bottomMiddle, vertex3, rightMiddle, BLACK);
-        //DrawTriangle(topMiddle, vertex2, leftMiddle, BLACK);
-
-        // Square value 6
-        //DrawRectangle(bottomMiddle.x, topMiddle.y, (width / 2), height, PINK);
-
-        // Square value 7
-       //DrawTriangle(topMiddle, vertex2, leftMiddle, PINK);
-
-        // Square value 8
-        //DrawRectangle(xPos, yPos, width, height, PINK);
-        //DrawTriangle(topMiddle, vertex2, leftMiddle, BLACK);
-
-        // Square value 9
-        //DrawRectangle((bottomMiddle.x - (bottomMiddle.x / 2)), topMiddle.y, (width / 2), height, PINK);
-
-        // Square value 10 *NOTE: CHECK THIS ONE FOR ERROR WITH BLACK TRIANGLE 4 VALUE
-        //DrawRectangle(xPos, yPos, width, height, PINK);
-        //DrawTriangleLines(topMiddle, vertex4, rightMiddle, BLACK);
-        //DrawTriangle(leftMiddle, vertex1, bottomMiddle, BLACK);
-
-        // Square value 11 *NOTE: CHECK THIS ONE FOR ERROR WITH BLACK TRIANGLE 4 VALUE
-        //DrawRectangle(xPos, yPos, width, height, PINK);
-        //DrawTriangleLines(rightMiddle, topMiddle, vertex4, BLACK);
-
-        // Square value 12
-        //DrawRectangle(leftMiddle.x, topMiddle.y, width, ((height / 2) + yPos), PINK);
-
-        // Square value 13
-        //DrawRectangle(xPos, yPos, width, height, PINK);
-        //DrawTriangle(bottomMiddle, vertex3, rightMiddle, BLACK);
-
-
-        // Square value 14
-        //DrawRectangle(xPos, yPos, width, height, PINK);
-        //DrawTriangle(leftMiddle, vertex1, bottomMiddle, BLACK);
-
-        // Square value 15
-        //DrawRectangle(xPos, yPos, width, height, PINK);*/
-
-        //Cell cell = Cell(vertex1, vertex4);
-        //cell.DrawValueOne();
-        //cell.DrawCellByCase(9, false);
-
-        //Obstacle myShape = Obstacle(shape1, 8);
-        //myShape.DrawObstacle();
-        //myShape.CalculateBoundingBox();
-        //myShape.DrawBoundingBox();
-
 
         for (int i = 0; i < 8; i++)
         {
@@ -240,6 +178,7 @@ int main()
               cellGrid[i][j].DrawCellByCase(GetRandomValue(0, 15), false);
            }
         }
+        
 
         EndDrawing();
     }
