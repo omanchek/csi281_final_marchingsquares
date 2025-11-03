@@ -84,13 +84,13 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
         break;
 
       case 7:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawTriangle(topCenter, topLeft, leftCenter, PINK);
+          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
+          DrawTriangle(topCenter, topLeft, leftCenter, BLACK);
         break;
 
       case 8:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-        DrawTriangle(topCenter, topLeft, leftCenter, BLACK);
+          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
+          DrawTriangle(topCenter, topLeft, leftCenter, PINK);
         break;
 
       case 9:
@@ -110,6 +110,7 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
         break;
 
       case 12:
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
         DrawRectangle(topLeft.x, topRight.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), PINK);
         break;
 
@@ -119,13 +120,13 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
         break;
 
       case 14:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-          DrawTriangle(leftCenter, bottomLeft, bottomCenter, BLACK);
-          break;
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
+        DrawTriangle(leftCenter, bottomLeft, bottomCenter, BLACK);
+        break;
 
       case 15:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-          break;
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
+        break;
 
       default:
          return false;

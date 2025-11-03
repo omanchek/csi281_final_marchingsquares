@@ -179,6 +179,9 @@ int main()
            }
         }
 
+        Cell testCell(Vector2(50, 100), Vector2(100, 50));
+        testCell.DrawCellByCase(12, true);
+
         EndDrawing();
     }
 
