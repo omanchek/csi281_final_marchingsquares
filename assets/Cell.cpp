@@ -64,7 +64,7 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
 
       case 3:
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawRectangle(leftCenter.x, leftCenter.y, (rightCenter.x - leftCenter.x), (bottomCenter.y / 2) - 12, PINK);
+        DrawRectangle(leftCenter.x, leftCenter.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), PINK);
         break;
 
       case 4:
@@ -110,7 +110,7 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
         break;
 
       case 12:
-        DrawRectangle(topLeft.x, topRight.y, (rightCenter.x - leftCenter.x), (bottomCenter.y / 2) - 12, PINK);
+        DrawRectangle(topLeft.x, topRight.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), PINK);
         break;
 
       case 13:

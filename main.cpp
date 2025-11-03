@@ -1,5 +1,6 @@
 #include <iostream>
 #include "assets/Obstacle.h"
+//#include "raygui.h"
 #include <raylib.h>
 #include <cstdint>
 #include "assets/Cell.h"
@@ -113,10 +114,10 @@ int main()
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // drawing logic goes here
-        /*
+        
         BeginDrawing();
         ClearBackground(BLACK);
-
+        /*
         DrawPolgyonFromVertices(shape1, 8);
         std::pair<Vector2, Vector2> boxSpecs = DrawPolygonBoundingBox(shape1Sorted, 0, 8, RED);
         std::pair<Vector2, Vector2> lhs = DrawPolygonBoundingBox(shape1Sorted, 0, 4, ORANGE);
@@ -169,16 +170,14 @@ int main()
         Vector2 topMiddle = Vector2((xPos + xPos), yPos);
         Vector2 leftMiddle = Vector2(xPos, (height / 2));
         Vector2 rightMiddle = Vector2(xPos + width, (height / 2));
-
-
+        
         for (int i = 0; i < 8; i++)
         {
            for (int j = 0; j < 8; j++)
            {
-              cellGrid[i][j].DrawCellByCase(GetRandomValue(0, 15), false);
+              cellGrid[i][j].DrawCellByCase(GetRandomValue(0, 15), true);
            }
         }
-        
 
         EndDrawing();
     }
