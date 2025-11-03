@@ -1,6 +1,6 @@
 #include <iostream>
 #include "assets/Obstacle.h"
-//#include "raygui.h"
+#include <raygui.h>
 #include <raylib.h>
 #include <cstdint>
 #include "assets/Cell.h"

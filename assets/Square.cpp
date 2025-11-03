@@ -1,5 +1,10 @@
 #include "Square.h"
 
+OverlapData::OverlapData()
+{
+   bLeft = bRight = tLeft = tRight = false;
+}
+
 Square::Square()
 {
    bottomLeft = Vector2(0,100);

@@ -26,6 +26,43 @@ Obstacle::~Obstacle()
    delete verts;
 }
 
+OverlapData Obstacle::CheckCollisionOfCell(Square inSquare)
+{
+   OverlapData overlaps = OverlapData();
+
+   //check if top vertical overlap
+   if (inSquare.GetTopRight().y > boundingBox.GetTopRight().y)
+   {
+      //check left corner
+      if (inSquare.GetBottomLeft().x > boundingBox.GetBottomLeft().x)
+      {
+         overlaps.tLeft = true;
+      }
+      //check right corner
+      if (inSquare.GetTopRight().x < boundingBox.GetTopRight().x)
+      {
+         overlaps.tRight = true;
+      }
+   }
+   //check if bottom vertical overlap
+   if (inSquare.GetBottomLeft().y < boundingBox.GetBottomLeft().y)
+   {
+      //check left corner
+      if (inSquare.GetBottomLeft().x > boundingBox.GetBottomLeft().x)
+      {
+         overlaps.bLeft = true;
+      }
+      //check right corner
+      if (inSquare.GetTopRight().x < boundingBox.GetTopRight().x)
+      {
+         overlaps.bRight = true;
+      }
+   }
+
+   //return the overlap data
+   return overlaps;
+}
+
 void Obstacle::DrawBoundingBox()
 {
    //draw whatever is stored in bounding box

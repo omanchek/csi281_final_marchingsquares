@@ -3,6 +3,13 @@
 
 #include <raylib.h>
 
+struct OverlapData
+{
+   OverlapData();
+
+   bool bLeft, bRight, tLeft, tRight;
+};
+
 class Square
 {
    public:
