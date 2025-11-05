@@ -1,8 +1,18 @@
 #include "Square.h"
+#include <iostream>
 
 OverlapData::OverlapData()
 {
    bLeft = bRight = tLeft = tRight = false;
+}
+
+void OverlapData::DebugPrintOverlapResults()
+{
+   std::cout << "Overlap Results: " << std::endl
+             << " BottomLeft: " << bLeft << std::endl
+             << " BottomRight: " << bRight << std::endl
+             << " TopLeft: " << tLeft << std::endl
+             << " TopRight: " << tRight << std::endl << std::endl;
 }
 
 Square::Square()
@@ -32,6 +42,12 @@ Square::Square(Vector2 inBottomLeft, float inHeight, float inWidth)
 Square::~Square()
 {
 
+}
+
+void Square::Draw(Color colorToDraw)
+{
+   //draw this square in the specified color
+   DrawRectangle(bottomLeft.x, topRight.y, width, height, colorToDraw);
 }
 
 Vector2 Square::GetBottomLeft()

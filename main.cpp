@@ -175,12 +175,21 @@ int main()
         {
            for (int j = 0; j < 8; j++)
            {
-              cellGrid[i][j].DrawCellByCase(GetRandomValue(0, 15), true);
+              //cellGrid[i][j].DrawCellByCase(GetRandomValue(0, 15), true);
            }
         }
 
-        Cell testCell(Vector2(50, 100), Vector2(100, 50));
-        testCell.DrawCellByCase(12, true);
+        //Cell testCell(Vector2(50, 100), Vector2(100, 50));
+        //testCell.DrawCellByCase(8, true);
+
+        Obstacle obstacle = Obstacle(shape1, 8);
+        obstacle.DrawObstacle();
+        obstacle.CalculateBoundingBox();
+        obstacle.DrawBoundingBox();
+        Square square = Square(Vector2(300, 800), Vector2(800, 200));
+        square.Draw(GREEN);
+        obstacle.CheckCollisionOfCell(square).DebugPrintOverlapResults();
+
 
         EndDrawing();
     }

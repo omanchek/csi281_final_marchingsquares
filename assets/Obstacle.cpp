@@ -31,29 +31,29 @@ OverlapData Obstacle::CheckCollisionOfCell(Square inSquare)
    OverlapData overlaps = OverlapData();
 
    //check if top vertical overlap
-   if (inSquare.GetTopRight().y > boundingBox.GetTopRight().y)
+   if (inSquare.GetTopRight().y >= boundingBox.GetTopRight().y && inSquare.GetTopRight().y <= boundingBox.GetBottomLeft().y)
    {
       //check left corner
-      if (inSquare.GetBottomLeft().x > boundingBox.GetBottomLeft().x)
+      if (inSquare.GetBottomLeft().x >= boundingBox.GetBottomLeft().x && inSquare.GetBottomLeft().x <= boundingBox.GetTopRight().x)
       {
          overlaps.tLeft = true;
       }
       //check right corner
-      if (inSquare.GetTopRight().x < boundingBox.GetTopRight().x)
+      if (inSquare.GetTopRight().x >= boundingBox.GetBottomLeft().x && inSquare.GetTopRight().x <= boundingBox.GetTopRight().x)
       {
          overlaps.tRight = true;
       }
    }
    //check if bottom vertical overlap
-   if (inSquare.GetBottomLeft().y < boundingBox.GetBottomLeft().y)
+   if (inSquare.GetBottomLeft().y >= boundingBox.GetTopRight().y && inSquare.GetBottomLeft().y <= boundingBox.GetBottomLeft().y)
    {
       //check left corner
-      if (inSquare.GetBottomLeft().x > boundingBox.GetBottomLeft().x)
+      if (inSquare.GetBottomLeft().x >= boundingBox.GetBottomLeft().x && inSquare.GetBottomLeft().x <= boundingBox.GetTopRight().x)
       {
          overlaps.bLeft = true;
       }
       //check right corner
-      if (inSquare.GetTopRight().x < boundingBox.GetTopRight().x)
+      if (inSquare.GetTopRight().x >= boundingBox.GetBottomLeft().x && inSquare.GetTopRight().x <= boundingBox.GetTopRight().x)
       {
          overlaps.bRight = true;
       }

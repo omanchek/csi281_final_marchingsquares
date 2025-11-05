@@ -7,6 +7,8 @@ struct OverlapData
 {
    OverlapData();
 
+   void DebugPrintOverlapResults();
+
    bool bLeft, bRight, tLeft, tRight;
 };
 
@@ -17,6 +19,8 @@ class Square
       Square(Vector2 inBottomLeft, Vector2 inTopRight);
       Square(Vector2 inBottomLeft, float inHeight, float inWidth);
       ~Square();
+
+      void Draw(Color colorToDraw);
 
       //accessors
       Vector2 GetBottomLeft();
