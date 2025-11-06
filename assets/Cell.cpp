@@ -166,11 +166,66 @@ void Cell::DrawCellByOverlapData(OverlapData inData, bool debugDraw)
    }
 
    //case 5
-   else if (inData.bLeft && !inData.bRight && !inData.tLeft && inData.tRight)
+   else if (!inData.bLeft && inData.bRight && inData.tLeft && !inData.tRight)
    {
       DrawCellByCase(5, debugDraw);
    }
 
+   //case 6
+   else if (inData.bLeft && !inData.bRight && inData.tLeft && !inData.tRight)
+   {
+       DrawCellByCase(6, debugDraw);
+   }
+
+   //case 7
+   else if (!inData.bLeft && !inData.bRight && inData.tLeft && !inData.tRight)
+   {
+       DrawCellByCase(7, debugDraw);
+   }
+
+   //case 8
+   else if (inData.bLeft && inData.bRight && !inData.tLeft && inData.tRight)
+   {
+       DrawCellByCase(8, debugDraw);
+   }
+
+   //case 9
+   else if (!inData.bLeft && inData.bRight && !inData.tLeft && inData.tRight)
+   {
+       DrawCellByCase(9, debugDraw);
+   }
+
+   //case 10
+   else if (inData.bLeft && !inData.bRight && !inData.tLeft && inData.tRight)
+   {
+       DrawCellByCase(10, debugDraw);
+   }
+
+   //case 11
+   else if (!inData.bLeft && !inData.bRight && !inData.tLeft && inData.tRight)
+   {
+       DrawCellByCase(11, debugDraw);
+   }
+
+   //case 12
+   else if (inData.bLeft && inData.bRight && !inData.tLeft && !inData.tRight)
+   {
+       DrawCellByCase(12, debugDraw);
+   }
+
+   //case 13
+   else if (!inData.bLeft && inData.bRight && !inData.tLeft && !inData.tRight)
+   {
+       DrawCellByCase(13, debugDraw);
+   }
+
+   //case 14
+   else if (inData.bLeft && !inData.bRight && !inData.tLeft && !inData.tRight)
+   {
+       DrawCellByCase(14, debugDraw);
+   }
+
+   //case 15
    else
    {
       DrawCellByCase(15, debugDraw);
