@@ -171,24 +171,24 @@ int main()
         Vector2 leftMiddle = Vector2(xPos, (height / 2));
         Vector2 rightMiddle = Vector2(xPos + width, (height / 2));
         
+        Obstacle obstacle = Obstacle(shape1, 8);
+        obstacle.DrawObstacle();
+        obstacle.CalculateBoundingBox();
+        obstacle.DrawBoundingBox();
+        
+
         for (int i = 0; i < 8; i++)
         {
            for (int j = 0; j < 8; j++)
            {
-              //cellGrid[i][j].DrawCellByCase(GetRandomValue(0, 15), true);
+              cellGrid[i][j].DrawCellByOverlapData(obstacle.CheckCollisionOfCell(cellGrid[i][j]), true);
            }
         }
 
         //Cell testCell(Vector2(50, 100), Vector2(100, 50));
         //testCell.DrawCellByCase(8, true);
 
-        Obstacle obstacle = Obstacle(shape1, 8);
-        obstacle.DrawObstacle();
-        obstacle.CalculateBoundingBox();
-        obstacle.DrawBoundingBox();
-        Square square = Square(Vector2(300, 800), Vector2(800, 200));
-        square.Draw(GREEN);
-        obstacle.CheckCollisionOfCell(square).DebugPrintOverlapResults();
+        
 
 
         EndDrawing();

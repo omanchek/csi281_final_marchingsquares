@@ -14,6 +14,7 @@ class Cell : public Square
       void DrawValueOne();
 
       bool DrawCellByCase(unsigned int caseValue, bool debugDraw);
+      void DrawCellByOverlapData(OverlapData inData, bool debugDraw);
 
    private:
       Vector2 bottomCenter;

@@ -132,3 +132,47 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
          return false;
    }
 }
+
+void Cell::DrawCellByOverlapData(OverlapData inData, bool debugDraw)
+{
+   //case 0
+   if (inData.bLeft && inData.bRight && inData.tLeft && inData.tRight)
+   {
+      DrawCellByCase(0, debugDraw);
+   }
+
+   //case 1
+   else if (!inData.bLeft && inData.bRight && inData.tLeft && inData.tRight)
+   {
+      DrawCellByCase(1, debugDraw);
+   }
+
+   //case 2
+   else if (inData.bLeft && !inData.bRight && inData.tLeft && inData.tRight)
+   {
+      DrawCellByCase(2, debugDraw);
+   }
+
+   //case 3
+   else if (!inData.bLeft && !inData.bRight && inData.tLeft && inData.tRight)
+   {
+      DrawCellByCase(3, debugDraw);
+   }
+
+   //case 4
+   else if (inData.bLeft && inData.bRight && inData.tLeft && !inData.tRight)
+   {
+      DrawCellByCase(4, debugDraw);
+   }
+
+   //case 5
+   else if (inData.bLeft && !inData.bRight && !inData.tLeft && inData.tRight)
+   {
+      DrawCellByCase(5, debugDraw);
+   }
+
+   else
+   {
+      DrawCellByCase(15, debugDraw);
+   }
+}
