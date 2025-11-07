@@ -21,6 +21,8 @@ class Cell : public Square
       Vector2 leftCenter;
       Vector2 topCenter;
       Vector2 rightCenter;
+
+      float pathfindingValue;
 };
 
 #endif

@@ -20,6 +20,9 @@ Cell::Cell(Vector2 inBottomLeft, Vector2 inTopRight)
    leftCenter = Vector2((topLeft.x), ((topLeft.y + bottomLeft.y) / 2));
    topCenter = Vector2(((topRight.x + topLeft.x) / 2), topRight.y);
    rightCenter = Vector2((topRight.x), ((topRight.y + bottomRight.y) / 2));
+
+   // assigns a value for the cell
+   pathfindingValue = 1;
 }
 
 Cell::~Cell()
