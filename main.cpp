@@ -65,7 +65,7 @@ Vector2 shape1[] =
 {
    Vector2(50, 50),
    Vector2(100, 200),
-   Vector2(150, 75),
+   Vector2(150, 500),
    Vector2(250, 350),
    Vector2(300, 200),
    Vector2(400, 200),
@@ -174,13 +174,11 @@ int main()
         {
            for (int j = 0; j < 48; j++)
            {
-              cellGrid[i][j].DrawCellByOverlapData(obstacle.CheckCollisionOfCell(cellGrid[i][j]), false);
+              cellGrid[i][j].DrawCellByOverlapData(obstacle.CheckCollisionOfCell(cellGrid[i][j]), true);
            }
         }
 
-        //Cell testCell(Vector2(50, 100), Vector2(100, 50));
-        //testCell.DrawCellByCase(8, true);
-
+        //draw in the actual obstacle
         obstacle.DrawObstacle();
         obstacle.DrawBoundingBox();
 
