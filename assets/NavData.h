@@ -12,6 +12,7 @@ class NavPath
 
       void AddCell(Cell& newCell);
       Cell& GetFront();
+      Cell& GetBack();
       bool RemoveFront();
 
    private:
