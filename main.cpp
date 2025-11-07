@@ -107,40 +107,6 @@ int main()
         
         BeginDrawing();
         ClearBackground(BLACK);
-        /*
-        DrawPolgyonFromVertices(shape1, 8);
-        std::pair<Vector2, Vector2> boxSpecs = DrawPolygonBoundingBox(shape1Sorted, 0, 8, RED);
-        std::pair<Vector2, Vector2> lhs = DrawPolygonBoundingBox(shape1Sorted, 0, 4, ORANGE);
-        std::pair<Vector2, Vector2> rhs = DrawPolygonBoundingBox(shape1Sorted, 4, 8, ORANGE);
-        DrawConnectingBoundingBox(lhs, rhs, ORANGE);
-
-        lhs = DrawPolygonBoundingBox(shape1Sorted, 0, 2, YELLOW);
-        rhs = DrawPolygonBoundingBox(shape1Sorted, 2, 4, YELLOW);
-        DrawConnectingBoundingBox(lhs, rhs, YELLOW);
-
-        lhs = DrawPolygonBoundingBox(shape1Sorted, 0, 1, GREEN);
-        rhs = DrawPolygonBoundingBox(shape1Sorted, 1, 2, GREEN);
-        DrawConnectingBoundingBox(lhs, rhs, GREEN);
-
-        lhs = DrawPolygonBoundingBox(shape1Sorted, 2, 3, GREEN);
-        rhs = DrawPolygonBoundingBox(shape1Sorted, 3, 4, GREEN);
-        DrawConnectingBoundingBox(lhs, rhs, GREEN);
-
-        lhs = DrawPolygonBoundingBox(shape1Sorted, 4, 6, YELLOW);
-        rhs = DrawPolygonBoundingBox(shape1Sorted, 6, 8, YELLOW);
-        DrawConnectingBoundingBox(lhs, rhs, YELLOW);
-
-        lhs = DrawPolygonBoundingBox(shape1Sorted, 4, 5, GREEN);
-        rhs = DrawPolygonBoundingBox(shape1Sorted, 5, 6, GREEN);
-        DrawConnectingBoundingBox(lhs, rhs, GREEN);
-
-        lhs = DrawPolygonBoundingBox(shape1Sorted, 6, 7, GREEN);
-        rhs = DrawPolygonBoundingBox(shape1Sorted, 7, 8, GREEN);
-        DrawConnectingBoundingBox(lhs, rhs, GREEN);
-        */
-
-        // Implementations for the different types of squares
-        // Uncomment below to use implementation
         
         // Base dimensions for the square
         float xPos = 200;
