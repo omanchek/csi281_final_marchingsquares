@@ -29,15 +29,15 @@ Cell::~Cell()
 
 void Cell::DrawValueOne()
 {
-    DrawCircle(bottomLeft.x, bottomLeft.y, 10, GREEN);
-    DrawCircle(bottomRight.x, bottomRight.y, 10, GREEN);
-    DrawCircle(topLeft.x, topLeft.y, 10, GREEN);
-    DrawCircle(topRight.x, topRight.y, 10, GREEN);
+    DrawCircle(bottomLeft.x, bottomLeft.y, 2, GREEN);
+    DrawCircle(bottomRight.x, bottomRight.y, 2, GREEN);
+    DrawCircle(topLeft.x, topLeft.y, 2, GREEN);
+    DrawCircle(topRight.x, topRight.y, 2, GREEN);
 
-    DrawCircle(bottomCenter.x, bottomCenter.y, 10, BLUE);
-    DrawCircle(leftCenter.x, leftCenter.y, 10, BLUE);
-    DrawCircle(topCenter.x, topCenter.y, 10, BLUE);
-    DrawCircle(topCenter.x, topCenter.y, 10, BLUE);
+    DrawCircle(bottomCenter.x, bottomCenter.y, 2, BLUE);
+    DrawCircle(leftCenter.x, leftCenter.y, 2, BLUE);
+    DrawCircle(topCenter.x, topCenter.y, 2, BLUE);
+    DrawCircle(topCenter.x, topCenter.y, 2, BLUE);
 }
 
 bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)

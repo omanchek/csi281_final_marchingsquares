@@ -65,36 +65,14 @@ Vector2 shape1[] =
 {
    Vector2(50, 50),
    Vector2(100, 200),
-   Vector2(150, 100),
-   Vector2(200, 350),
+   Vector2(150, 75),
+   Vector2(250, 350),
    Vector2(300, 200),
+   Vector2(400, 200),
    Vector2(400, 250),
-   Vector2(600, 200),
+   Vector2(500, 400),
+   Vector2(500, 200),
    Vector2(500, 150)
-};
-
-Vector2 shape1Sorted[] =
-{
-   Vector2(50, 50),
-   Vector2(100, 200),
-   Vector2(150, 100),
-   Vector2(200, 350),
-   Vector2(300, 200),
-   Vector2(400, 250),
-   Vector2(500, 150),
-   Vector2(600, 200)
-};
-
-Vector2 shape2[] =
-{
-   Vector2(50, 150),
-   Vector2(50, 300),
-   Vector2(300, 150),
-   Vector2(300, 50)/*,
-   Vector2(300, 200),
-   Vector2(400, 250),
-   Vector2(600, 200),
-   Vector2(500, 150)*/
 };
 
 int main()
@@ -110,14 +88,14 @@ int main()
 
     Vector2 b, t;
 
-    Cell** cellGrid = new Cell*[8];
-    for (int i = 0; i < 8; i++)
+    Cell** cellGrid = new Cell*[64];
+    for (int i = 0; i < 64; i++)
     {
-       cellGrid[i] = new Cell[8];
-       for (int j = 0; j < 8; j++)
+       cellGrid[i] = new Cell[48];
+       for (int j = 0; j < 48; j++)
        {
-          b = Vector2(25 + (i * 50), 25 + ((j + 1) * 50));
-          t = Vector2(25 + ((i + 1) * 50), 25 + (j * 50));
+          b = Vector2(25 + (i * 10), 25 + ((j + 1) * 10));
+          t = Vector2(25 + ((i + 1) * 10), 25 + (j * 10));
           cellGrid[i][j] = Cell(b, t);
        }
     }
@@ -183,20 +161,18 @@ int main()
         Vector2 leftMiddle = Vector2(xPos, (height / 2));
         Vector2 rightMiddle = Vector2(xPos + width, (height / 2));
         
-        Obstacle obstacle = Obstacle(shape1, 8);
-        obstacle.DrawObstacle();
+        Obstacle obstacle = Obstacle(shape1, 10);
+        
         obstacle.CalculateBoundingBox();
-        obstacle.DrawBoundingBox();
 
         /*Obstacle squareObstacle = Obstacle(shape2, 4);
         squareObstacle.DrawObstacle();
         squareObstacle.CalculateBoundingBox();
         squareObstacle.DrawBoundingBox();*/
         
-
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 64; i++)
         {
-           for (int j = 0; j < 8; j++)
+           for (int j = 0; j < 48; j++)
            {
               cellGrid[i][j].DrawCellByOverlapData(obstacle.CheckCollisionOfCell(cellGrid[i][j]), false);
            }
@@ -205,8 +181,8 @@ int main()
         //Cell testCell(Vector2(50, 100), Vector2(100, 50));
         //testCell.DrawCellByCase(8, true);
 
-        
-
+        obstacle.DrawObstacle();
+        obstacle.DrawBoundingBox();
 
         EndDrawing();
     }

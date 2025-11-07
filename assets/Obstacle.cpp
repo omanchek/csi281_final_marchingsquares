@@ -1,5 +1,7 @@
 #include "Obstacle.h"
 
+#include<iostream>
+
 Obstacle::Obstacle()
 {
    numVerts = 0;
@@ -30,37 +32,45 @@ OverlapData Obstacle::CheckCollisionOfCell(Square inSquare)
 {
    OverlapData overlaps = OverlapData();
 
-   //check if top vertical overlap
-   if (inSquare.GetTopRight().y >= boundingBox.GetTopRight().y && inSquare.GetTopRight().y <= boundingBox.GetBottomLeft().y)
-   {
-      //check left corner
-      if (inSquare.GetBottomLeft().x >= boundingBox.GetBottomLeft().x && inSquare.GetBottomLeft().x <= boundingBox.GetTopRight().x)
-      {
-         overlaps.tLeft = true;
-      }
-      //check right corner
-      if (inSquare.GetTopRight().x >= boundingBox.GetBottomLeft().x && inSquare.GetTopRight().x <= boundingBox.GetTopRight().x)
-      {
-         overlaps.tRight = true;
-      }
-   }
-   //check if bottom vertical overlap
-   if (inSquare.GetBottomLeft().y >= boundingBox.GetTopRight().y && inSquare.GetBottomLeft().y <= boundingBox.GetBottomLeft().y)
-   {
-      //check left corner
-      if (inSquare.GetBottomLeft().x >= boundingBox.GetBottomLeft().x && inSquare.GetBottomLeft().x <= boundingBox.GetTopRight().x)
-      {
-         overlaps.bLeft = true;
-      }
-      //check right corner
-      if (inSquare.GetTopRight().x >= boundingBox.GetBottomLeft().x && inSquare.GetTopRight().x <= boundingBox.GetTopRight().x)
-      {
-         overlaps.bRight = true;
-      }
-   }
+   //check if each point is inside the shape or not
+   overlaps.bLeft = CheckPointInsideShape(inSquare.GetBottomLeft(), false);
+   overlaps.bRight = CheckPointInsideShape(inSquare.GetBottomRight(), false);
+   overlaps.tLeft = CheckPointInsideShape(inSquare.GetTopLeft(), true);
+   overlaps.tRight = CheckPointInsideShape(inSquare.GetTopRight(), false);
 
    //return the overlap data
    return overlaps;
+}
+
+bool Obstacle::CheckPointInsideShape(Vector2 point, bool debugPrint)
+{
+   //create a tracker for number of hits
+   int hits = 0;
+
+   //for each segment in the shape
+   for (int i = 0; i < numVerts; i++)
+   {
+      //check if it's the last point, and therefore should wrap
+      if (i == numVerts - 1)
+      {
+         if (RaycastSegment(point, i, 0)) hits++;
+      }
+      else
+      {
+         if (RaycastSegment(point, i, i + 1)) hits++;
+      }
+   }
+
+   //once all raycast have been done, eval the result and return (even hits = not inside, odd hits = inside)
+
+   if (hits % 2 == 1)
+   {
+      return true;
+   }
+   else
+   {
+      return false;
+   }
 }
 
 void Obstacle::DrawBoundingBox()
@@ -113,5 +123,57 @@ bool Obstacle::CalculateBoundingBox()
    else
    {
       false;
+   }
+}
+
+bool Obstacle::InBetween(float value, float bound1, float bound2)
+{
+   //check what order the bounds are in
+   if (bound1 <= bound2)
+   {
+      if (value >= bound1 && value <= bound2)
+      {
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+   else
+   {
+      if (value >= bound2 && value <= bound1)
+      {
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+}
+
+bool Obstacle::RaycastSegment(Vector2 origin, int first, int second)
+{
+   //first determine the slope and offset (i.e. linear equation of the segment)
+   float xDif, yDif, slope, offset;
+   xDif = verts[second].x - verts[first].x;
+   yDif = verts[second].y - verts[first].y;
+   slope = yDif / xDif;
+   offset = verts[first].y - (slope * verts[first].x);
+
+   //if vertical line
+   if (xDif == 0)
+   {
+      return (InBetween(origin.y, verts[first].y, verts[second].y) && verts[first].x >= origin.x);
+   }
+
+   else
+   {
+      //determine when there is an intersection
+      float xIntersect = (origin.y - offset) / slope;
+
+      //return if the intersect is valid
+      return (InBetween(xIntersect, verts[first].x, verts[second].x) && xIntersect >= origin.x);
    }
 }

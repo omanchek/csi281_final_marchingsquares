@@ -13,9 +13,12 @@ class Obstacle
       ~Obstacle();
 
       OverlapData CheckCollisionOfCell(Square inSquare);
+      bool CheckPointInsideShape(Vector2 point, bool debugPrint);
       void DrawBoundingBox();
       void DrawObstacle();
       bool CalculateBoundingBox();
+      bool InBetween(float value, float bound1, float bound2);
+      bool RaycastSegment(Vector2 origin, int first, int second);
 
    private:
       int numVerts;
