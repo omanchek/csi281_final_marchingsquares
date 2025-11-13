@@ -6,6 +6,14 @@ OverlapData::OverlapData()
    bLeft = bRight = tLeft = tRight = false;
 }
 
+OverlapData::OverlapData(bool inBL, bool inBR, bool inTL, bool inTR)
+{
+   bLeft = inBL;
+   bRight = inBR;
+   tLeft = inTL;
+   tRight = inTR;
+}
+
 void OverlapData::DebugPrintOverlapResults()
 {
    std::cout << "Overlap Results: " << std::endl
@@ -13,6 +21,54 @@ void OverlapData::DebugPrintOverlapResults()
              << " BottomRight: " << bRight << std::endl
              << " TopLeft: " << tLeft << std::endl
              << " TopRight: " << tRight << std::endl << std::endl;
+}
+
+void OverlapData::operator=(const OverlapData& rhs)
+{
+   bLeft = rhs.bLeft;
+   bRight = rhs.bRight;
+   tLeft = rhs.tLeft;
+   tRight = rhs.tRight;
+}
+
+void OverlapData::operator+(const OverlapData& rhs)
+{
+   if (rhs.bLeft)
+   {
+      bLeft = true;
+   }
+   if (rhs.bRight)
+   {
+      bRight = true;
+   }
+   if (rhs.tLeft)
+   {
+      tLeft = true;
+   }
+   if (rhs.tRight)
+   {
+      tRight = true;
+   }
+}
+
+void OverlapData::operator+=(const OverlapData& rhs)
+{
+   if (rhs.bLeft)
+   {
+      bLeft = true;
+   }
+   if (rhs.bRight)
+   {
+      bRight = true;
+   }
+   if (rhs.tLeft)
+   {
+      tLeft = true;
+   }
+   if (rhs.tRight)
+   {
+      tRight = true;
+   }
 }
 
 Square::Square()

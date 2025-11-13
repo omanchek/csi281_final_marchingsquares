@@ -56,7 +56,7 @@ void NavMesh::DrawNavmesh(Obstacle& obstacle)
    {
       for (int j = 0; j < vertical; j++)
       {
-         cellGrid[i][j].DrawCellByOverlapData(obstacle.CheckCollisionOfCell(cellGrid[i][j]), true);
+         cellGrid[i][j].DrawCellByOverlapData(obstacle.CheckCollisionOfCell(cellGrid[i][j]), false);
       }
    }
 }

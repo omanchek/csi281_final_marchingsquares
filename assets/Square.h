@@ -6,8 +6,12 @@
 struct OverlapData
 {
    OverlapData();
+   OverlapData(bool inBL, bool inBR, bool inTL, bool inTR);
 
    void DebugPrintOverlapResults();
+   void operator=(const OverlapData& rhs);
+   void operator+(const OverlapData& rhs);
+   void operator+=(const OverlapData& rhs);
 
    bool bLeft, bRight, tLeft, tRight;
 };
