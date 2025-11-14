@@ -23,7 +23,7 @@ class Obstacle
    private:
       int numVerts;
       Square boundingBox;
-      Vector2* verts;
+      Vector2* verts = nullptr;
 };
 
 #endif

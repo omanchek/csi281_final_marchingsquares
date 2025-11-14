@@ -14,14 +14,15 @@ class NavMesh
       NavMesh(Vector2 baseOffset, int inCellSize, int inHorizontal, int inVertical);
       ~NavMesh();
 
-      void DrawNavmesh(Obstacle& obstacle);
+      void DrawNavmesh();
 
       NavPath GetPathToPoint(Vector2 origin, Vector2 destination);
       NavPath GetPathToPoint(Cell origin, Cell destination);
+      void RegisterObstacle(Obstacle& inObstacle);
 
    private:
       Cell** cellGrid;
-
+      std::vector<Obstacle> obstacles;
       int cellSize, horizontal, vertical;
 };
 

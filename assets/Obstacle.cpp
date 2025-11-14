@@ -24,8 +24,9 @@ Obstacle::Obstacle(const Vector2 vertexList[], int vertices)
 
 Obstacle::~Obstacle()
 {
+
    //clean up vertex list
-   delete verts;
+   delete[] verts;
 }
 
 OverlapData Obstacle::CheckCollisionOfCell(Square inSquare)

@@ -49,14 +49,34 @@ NavMesh::~NavMesh()
    delete[] cellGrid;
 }
 
-void NavMesh::DrawNavmesh(Obstacle& obstacle)
+void NavMesh::DrawNavmesh()
 {
+   //create iterators
+   int i, j;
+   OverlapData dataIt;
+
    //draw all of the cells based on the given obstacle
-   for (int i = 0; i < horizontal; i++)
+   for (i = 0; i < horizontal; i++)
    {
-      for (int j = 0; j < vertical; j++)
+      for (j = 0; j < vertical; j++)
       {
-         cellGrid[i][j].DrawCellByOverlapData(obstacle.CheckCollisionOfCell(cellGrid[i][j]), false);
+         //re-init the overlap data
+         dataIt = OverlapData();
+
+         //for each obstacle, add any new overlaps
+         for (auto& it : obstacles)
+         {
+            dataIt += it.CheckCollisionOfCell(cellGrid[i][j]);
+         }
+
+         //draw based on the sum of overlaps
+         cellGrid[i][j].DrawCellByOverlapData(dataIt, false);
       }
    }
+}
+
+void NavMesh::RegisterObstacle(Obstacle& inObstacle)
+{
+   //add this obstacle to the obstacle list
+   obstacles.push_back(inObstacle);
 }
