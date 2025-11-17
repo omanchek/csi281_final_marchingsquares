@@ -21,6 +21,11 @@ Cell& NavPath::GetFront()
    return pathNodes.front();
 }
 
+Cell& NavPath::GetBack()
+{
+    return pathNodes.back();
+}
+
 bool NavPath::RemoveFront()
 {
    //check any nodes
