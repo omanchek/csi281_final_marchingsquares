@@ -1,4 +1,5 @@
 #include "NavMeshAgent.h"
+#include "NavData.h"
 
 // sets the path for the Agent
 NavMeshAgent::NavMeshAgent(NavPath& currentPath)

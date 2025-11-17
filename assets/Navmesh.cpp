@@ -75,6 +75,16 @@ void NavMesh::DrawNavmesh()
    }
 }
 
+NavPath NavMesh::GetPathToPoint(Vector2 origin, Vector2 destination)
+{
+   return NavPath();
+}
+
+NavPath NavMesh::GetPathToPoint(Cell origin, Cell destination)
+{
+   return NavPath();
+}
+
 void NavMesh::RegisterObstacle(Obstacle& inObstacle)
 {
    //add this obstacle to the obstacle list

@@ -32,6 +32,7 @@ bool NavPath::RemoveFront()
    if (pathNodes.size() > 0)
    {
       pathNodes.pop_front();
+      return true;
    }
    else
    {

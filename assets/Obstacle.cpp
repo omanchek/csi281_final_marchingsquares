@@ -123,7 +123,7 @@ bool Obstacle::CalculateBoundingBox()
    }
    else
    {
-      false;
+      return false;
    }
 }
 
