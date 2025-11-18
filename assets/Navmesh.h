@@ -18,11 +18,11 @@ class NavMesh
 
       NavPath GetPathToPoint(Vector2 origin, Vector2 destination);
       NavPath GetPathToPoint(Cell origin, Cell destination);
-      void RegisterObstacle(Obstacle& inObstacle);
+      void RegisterObstacle(Obstacle* inObstacle);
 
    private:
       Cell** cellGrid;
-      std::vector<Obstacle> obstacles;
+      std::vector<Obstacle*> obstacles;
       int cellSize, horizontal, vertical;
 };
 

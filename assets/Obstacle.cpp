@@ -5,6 +5,7 @@
 Obstacle::Obstacle()
 {
    numVerts = 0;
+   verts = nullptr;
 }
 
 Obstacle::Obstacle(const Vector2 vertexList[], int vertices)
@@ -20,16 +21,18 @@ Obstacle::Obstacle(const Vector2 vertexList[], int vertices)
    {
       verts[i] = vertexList[i];
    }
+
+   //run bounding box calculations based on vertices inputted
+   CalculateBoundingBox();
 }
 
 Obstacle::~Obstacle()
 {
-
    //clean up vertex list
    delete[] verts;
 }
 
-OverlapData Obstacle::CheckCollisionOfCell(Square inSquare)
+OverlapData Obstacle::CheckCollisionOfCell(Square& inSquare)
 {
    OverlapData overlaps = OverlapData();
 
@@ -77,7 +80,7 @@ bool Obstacle::CheckPointInsideShape(Vector2 point, bool debugPrint)
 void Obstacle::DrawBoundingBox()
 {
    //draw whatever is stored in bounding box
-   DrawRectangleLines(boundingBox.GetBottomLeft().x, boundingBox.GetTopRight().y, boundingBox.GetWidth(), boundingBox.GetHeight(), PINK);
+   DrawRectangleLines(boundingBox.GetBottomLeft().x, boundingBox.GetTopRight().y, boundingBox.GetWidth(), boundingBox.GetHeight(), BLUE);
 }
 
 void Obstacle::DrawObstacle()
@@ -89,11 +92,11 @@ void Obstacle::DrawObstacle()
    for (i = 0; i < numVerts - 1; i++)
    {
       //draw a line from this point to the next
-      DrawLine(verts[i].x, verts[i].y, verts[i + 1].x, verts[i + 1].y, RED);
+      DrawLine(verts[i].x, verts[i].y, verts[i + 1].x, verts[i + 1].y, GREEN);
    }
 
    //draw final line
-   DrawLine(verts[i].x, verts[i].y, verts[0].x, verts[0].y, RED);
+   DrawLine(verts[i].x, verts[i].y, verts[0].x, verts[0].y, GREEN);
 }
 
 bool Obstacle::CalculateBoundingBox()

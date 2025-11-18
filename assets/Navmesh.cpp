@@ -39,6 +39,12 @@ NavMesh::~NavMesh()
 {
    std::cout << "NAVMESH CLEARED" << std::endl;
 
+   //delete all obstacles
+   for (Obstacle* it : obstacles)
+   {
+      delete it;
+   }
+
    //delete each column
    for (int i = 0; i < horizontal; i++)
    {
@@ -66,7 +72,7 @@ void NavMesh::DrawNavmesh()
          //for each obstacle, add any new overlaps
          for (auto& it : obstacles)
          {
-            dataIt += it.CheckCollisionOfCell(cellGrid[i][j]);
+            dataIt += it->CheckCollisionOfCell(cellGrid[i][j]);
          }
 
          //draw based on the sum of overlaps
@@ -85,7 +91,7 @@ NavPath NavMesh::GetPathToPoint(Cell origin, Cell destination)
    return NavPath();
 }
 
-void NavMesh::RegisterObstacle(Obstacle& inObstacle)
+void NavMesh::RegisterObstacle(Obstacle* inObstacle)
 {
    //add this obstacle to the obstacle list
    obstacles.push_back(inObstacle);

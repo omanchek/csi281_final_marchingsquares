@@ -12,7 +12,7 @@ class Obstacle
       Obstacle(const Vector2 vertexList[], int vertices);
       ~Obstacle();
 
-      OverlapData CheckCollisionOfCell(Square inSquare);
+      OverlapData CheckCollisionOfCell(Square& inSquare);
       bool CheckPointInsideShape(Vector2 point, bool debugPrint);
       void DrawBoundingBox();
       void DrawObstacle();

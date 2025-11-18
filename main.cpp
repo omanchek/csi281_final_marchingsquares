@@ -30,6 +30,14 @@ Vector2 shape2[] =
    Vector2(650, 550)
 };
 
+Vector2 shape3[] =
+{
+   Vector2(300, 500),
+   Vector2(275, 600),
+   Vector2(425, 600),
+   Vector2(400, 500)
+};
+
 int main()
 {
     const int screenWidth = 1080;
@@ -42,15 +50,15 @@ int main()
     SetTargetFPS(60);
 
     //define the navmesh and obstacles
-    NavMesh navMesh = NavMesh(Vector2(25, 25), 10, 64, 48);
-    Obstacle obstacle = Obstacle(shape1, 10);
-    Obstacle obstacle2 = Obstacle(shape2, 3);
-    obstacle.CalculateBoundingBox();
-    obstacle2.CalculateBoundingBox();
+    NavMesh navMesh = NavMesh(Vector2(25, 25), 10, 64, 60);
+    Obstacle* obstacle = new Obstacle(shape1, 10);
+    Obstacle* obstacle2 = new Obstacle(shape2, 3);
+    Obstacle* obstacle3 = new Obstacle(shape3, 4);
 
     //register any obstacles
     navMesh.RegisterObstacle(obstacle);
     navMesh.RegisterObstacle(obstacle2);
+    navMesh.RegisterObstacle(obstacle3);
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -64,10 +72,12 @@ int main()
         navMesh.DrawNavmesh();
 
         //draw in the actual obstacle
-        obstacle2.DrawObstacle();
-        obstacle.DrawObstacle();
-        obstacle2.DrawBoundingBox();
-        obstacle.DrawBoundingBox();
+        obstacle3->DrawObstacle();
+        obstacle2->DrawObstacle();
+        obstacle->DrawObstacle();
+        obstacle3->DrawBoundingBox();
+        obstacle2->DrawBoundingBox();
+        obstacle->DrawBoundingBox();
 
         EndDrawing();
     }
