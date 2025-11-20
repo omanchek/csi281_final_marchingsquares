@@ -234,3 +234,13 @@ void Cell::DrawCellByOverlapData(OverlapData inData, bool debugDraw)
       DrawCellByCase(15, debugDraw);
    }
 }
+
+Vector2Int Cell::GetCellCoordinate()
+{
+   return coordinate;
+}
+
+void Cell::SetCoordinatesInNavmesh(int x, int y)
+{
+   coordinate = Vector2Int(x, y); 
+}

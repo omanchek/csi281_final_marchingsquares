@@ -1,8 +1,8 @@
 #ifndef NAVDATA_H
 #define NAVDATA_H
 
-#include <list>
 #include "Cell.h"
+#include <list>
 
 class NavPath
 {

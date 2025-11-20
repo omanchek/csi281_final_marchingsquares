@@ -79,6 +79,8 @@ int main()
         obstacle2->DrawBoundingBox();
         obstacle->DrawBoundingBox();
 
+        navMesh.GetPathToPoint(navMesh.GetCell(0, 0), navMesh.GetCell(10, 12));
+
         EndDrawing();
     }
 

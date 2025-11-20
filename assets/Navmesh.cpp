@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Navmesh.h"
+#include <unordered_map>
+#include <utility>
 
 NavMesh::NavMesh()
 {
@@ -28,9 +30,11 @@ NavMesh::NavMesh(Vector2 baseOffset, int inCellSize, int inHorizontal, int inVer
       //populate each row with a cell in the correct spot
       for (int j = 0; j < vertical; j++)
       {
+         //add the cell and the right position / coordinates, and store those in the cell for reference
          b = Vector2(baseOffset.x + (i * cellSize), baseOffset.y + ((j + 1) * cellSize));
          t = Vector2(baseOffset.x + ((i + 1) * cellSize), baseOffset.y + (j * cellSize));
          cellGrid[i][j] = Cell(b, t);
+         cellGrid[i][j].SetCoordinatesInNavmesh(i, j);
       }
    }
 }
@@ -81,6 +85,24 @@ void NavMesh::DrawNavmesh()
    }
 }
 
+float NavMesh::EstDist(Vector2Int diff)
+{
+   return sqrt(pow(float(diff.x * cellSize), 2) + pow(float(diff.y * cellSize), 2));
+}
+
+Cell NavMesh::GetCell(int x, int y)
+{
+   //if cell is within map, return it
+   if (IsValidTile(Vector2Int(x, y)))
+   {
+      return cellGrid[x][y];
+   }
+   else
+   {
+      return Cell();
+   }
+}
+
 NavPath NavMesh::GetPathToPoint(Vector2 origin, Vector2 destination)
 {
    return NavPath();
@@ -88,7 +110,23 @@ NavPath NavMesh::GetPathToPoint(Vector2 origin, Vector2 destination)
 
 NavPath NavMesh::GetPathToPoint(Cell origin, Cell destination)
 {
+   //check if path required
+   if (origin.GetCellCoordinate() == destination.GetCellCoordinate())
+   {
+      return NavPath();
+   }
+   //if the cells are different, proceed to finding path
+   else
+   {
+      
+   }
+
    return NavPath();
+}
+
+bool NavMesh::IsValidTile(Vector2Int tileCoords)
+{
+   return (tileCoords >= Vector2Int(0, 0) && tileCoords < Vector2Int(horizontal, vertical));
 }
 
 void NavMesh::RegisterObstacle(Obstacle* inObstacle)

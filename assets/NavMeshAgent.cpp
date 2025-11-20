@@ -1,5 +1,5 @@
 #include "NavMeshAgent.h"
-#include "NavData.h"
+//#include "NavData.h"
 
 // sets the path for the Agent
 NavMeshAgent::NavMeshAgent(NavPath& currentPath)
@@ -17,11 +17,13 @@ NavMeshAgent::NavMeshAgent(NavPath& currentPath)
 
 void NavMeshAgent::MoveAgent()
 {
-	while (path->RemoveFront() != false)
+	/*
+   while (path->RemoveFront() != false)
 	{
 		navMesh.GetPathToPoint(path->GetFront(), path->GetBack());
 		path->RemoveFront();
 	}
+   */
 }
 
 NavPath& NavMeshAgent::GetPath()
