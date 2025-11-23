@@ -50,17 +50,15 @@ int main()
     SetTargetFPS(60);
 
     //define the navmesh and obstacles
-    NavMesh navMesh = NavMesh(Vector2(25, 25), 10, 64, 60);
+    NavMesh* navMesh = new NavMesh(Vector2(25, 25), 10, 64, 60);
     Obstacle* obstacle = new Obstacle(shape1, 10);
     Obstacle* obstacle2 = new Obstacle(shape2, 3);
     Obstacle* obstacle3 = new Obstacle(shape3, 4);
 
-    //navMesh.GetPathToPoint(Vector2Int(1, 3), Vector2Int(10, 7));
-
     //register any obstacles
-    navMesh.RegisterObstacle(obstacle);
-    navMesh.RegisterObstacle(obstacle2);
-    navMesh.RegisterObstacle(obstacle3);
+    navMesh->RegisterObstacle(obstacle);
+    navMesh->RegisterObstacle(obstacle2);
+    navMesh->RegisterObstacle(obstacle3);
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -71,7 +69,7 @@ int main()
         ClearBackground(BLACK);
 
         //draw the navmesh
-        navMesh.DrawNavmesh();
+        navMesh->DrawNavmesh();
 
         //draw in the actual obstacle
         obstacle3->DrawObstacle();
@@ -85,6 +83,8 @@ int main()
 
         EndDrawing();
     }
+
+    delete navMesh;
 
     CloseWindow();
     return 0;
