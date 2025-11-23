@@ -38,3 +38,9 @@ Vector2Int operator+(const Vector2Int& lhs, const Vector2Int& rhs)
 {
    return Vector2Int(lhs.x + rhs.x, lhs.y + rhs.y);
 }
+
+std::ostream& operator<<(std::ostream& lhs, const Vector2Int& rhs)
+{
+   lhs << "(" << rhs.x << ", " << rhs.y << ")";
+   return lhs;
+}

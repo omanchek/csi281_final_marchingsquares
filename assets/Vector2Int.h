@@ -1,6 +1,8 @@
 #ifndef VECTOR2INT_H
 #define VECTOR2INT_H
 
+#include <iostream>
+
 struct Vector2Int
 {
    int x, y;
@@ -17,5 +19,6 @@ struct Vector2Int
 //general functions
 bool operator==(const Vector2Int& lhs, const Vector2Int& rhs);
 Vector2Int operator+(const Vector2Int& lhs, const Vector2Int& rhs);
+std::ostream& operator<<(std::ostream& lhs, const Vector2Int& rhs);
 
 #endif

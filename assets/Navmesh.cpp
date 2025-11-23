@@ -20,13 +20,13 @@ NavMesh::NavMesh(Vector2 baseOffset, int inCellSize, int inHorizontal, int inVer
    Vector2 b, t;
 
    //init the columns of the cell grid
-   cellGrid = new Cell*[horizontal];
+   cellGrid = new Cell**[horizontal];
 
    //for each column
    for (int i = 0; i < horizontal; i++)
    {
       //add a new array for the row
-      cellGrid[i] = new Cell[vertical];
+      cellGrid[i] = new Cell*[vertical];
 
       //populate each row with a cell in the correct spot
       for (int j = 0; j < vertical; j++)
@@ -34,8 +34,8 @@ NavMesh::NavMesh(Vector2 baseOffset, int inCellSize, int inHorizontal, int inVer
          //add the cell and the right position / coordinates, and store those in the cell for reference
          b = Vector2(baseOffset.x + (i * cellSize), baseOffset.y + ((j + 1) * cellSize));
          t = Vector2(baseOffset.x + ((i + 1) * cellSize), baseOffset.y + (j * cellSize));
-         cellGrid[i][j] = Cell(b, t);
-         cellGrid[i][j].SetCoordinatesInNavmesh(i, j);
+         cellGrid[i][j] = new Cell(b, t);
+         cellGrid[i][j]->SetCoordinatesInNavmesh(i, j);
       }
    }
 }
@@ -50,9 +50,17 @@ NavMesh::~NavMesh()
       delete it;
    }
 
+   //create iterators
+   int i, j;
+
    //delete each column
-   for (int i = 0; i < horizontal; i++)
+   for (i = 0; i < horizontal; i++)
    {
+      //detelet all of the cells
+      for (j = 0; j < vertical; j++)
+      {
+         delete cellGrid[i][j];
+      }
       delete[] cellGrid[i];
    }
 
@@ -77,11 +85,11 @@ void NavMesh::DrawNavmesh()
          //for each obstacle, add any new overlaps
          for (auto& it : obstacles)
          {
-            dataIt += it->CheckCollisionOfCell(cellGrid[i][j]);
+            dataIt += it->CheckCollisionOfCell(*cellGrid[i][j]);
          }
 
          //draw based on the sum of overlaps
-         cellGrid[i][j].DrawCellByOverlapData(dataIt, true);
+         cellGrid[i][j]->DrawCellByOverlapData(dataIt, true);
       }
    }
 }
@@ -91,7 +99,7 @@ float NavMesh::EstDist(Vector2Int diff)
    return sqrt(pow(float(diff.x * cellSize), 2) + pow(float(diff.y * cellSize), 2));
 }
 
-Cell NavMesh::GetCell(int x, int y)
+Cell* NavMesh::GetCell(int x, int y)
 {
    //if cell is within map, return it
    if (IsValidCell(Vector2Int(x, y)))
@@ -100,7 +108,7 @@ Cell NavMesh::GetCell(int x, int y)
    }
    else
    {
-      return Cell();
+      return nullptr;
    }
 }
 
@@ -111,15 +119,8 @@ NavPath NavMesh::GetPathToPoint(Vector2Int origin, Vector2Int destination)
    {
       //create data structures for determining a path
       std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>> frontier = std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>();
-
-      //add the origin cell to the frontier
-      frontier.push(CellData(origin, origin, 0, EstDist(destination - origin)));
-
-      //until the has been found
-      while (frontier.top().mSelf != destination)
-      {
-         
-      }
+   
+      return NavPath();
    }
    else
    {
@@ -130,6 +131,7 @@ NavPath NavMesh::GetPathToPoint(Vector2Int origin, Vector2Int destination)
 NavPath NavMesh::GetPathToPoint(Cell origin, Cell destination)
 {
    //just call the vector2Int version w/ the cell coordinations of origin and destination
+   return GetPathToPoint(origin.GetCellCoordinate(), destination.GetCellCoordinate());
 }
 
 bool NavMesh::IsValidCell(Vector2Int tileCoords)
@@ -137,7 +139,7 @@ bool NavMesh::IsValidCell(Vector2Int tileCoords)
    return (tileCoords >= Vector2Int(0, 0) && tileCoords < Vector2Int(horizontal, vertical));
 }
 
-void NavMesh::PushNeighbors(Vector2Int cell, std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>& inFrontier)
+void NavMesh::PushNeighbors(CellData cell, Vector2Int& dest, std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>& inFrontier)
 {
    
 }

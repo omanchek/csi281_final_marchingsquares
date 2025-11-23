@@ -55,6 +55,8 @@ int main()
     Obstacle* obstacle2 = new Obstacle(shape2, 3);
     Obstacle* obstacle3 = new Obstacle(shape3, 4);
 
+    //navMesh.GetPathToPoint(Vector2Int(1, 3), Vector2Int(10, 7));
+
     //register any obstacles
     navMesh.RegisterObstacle(obstacle);
     navMesh.RegisterObstacle(obstacle2);
@@ -79,7 +81,7 @@ int main()
         obstacle2->DrawBoundingBox();
         obstacle->DrawBoundingBox();
 
-        navMesh.GetPathToPoint(navMesh.GetCell(0, 0), navMesh.GetCell(10, 12));
+        //navMesh.GetPathToPoint(navMesh.GetCell(0, 0), navMesh.GetCell(10, 12));
 
         EndDrawing();
     }
