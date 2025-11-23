@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 #include "Navmesh.h"
 #include <unordered_map>
 #include <utility>
@@ -80,7 +81,7 @@ void NavMesh::DrawNavmesh()
          }
 
          //draw based on the sum of overlaps
-         cellGrid[i][j].DrawCellByOverlapData(dataIt, false);
+         cellGrid[i][j].DrawCellByOverlapData(dataIt, true);
       }
    }
 }
@@ -93,7 +94,7 @@ float NavMesh::EstDist(Vector2Int diff)
 Cell NavMesh::GetCell(int x, int y)
 {
    //if cell is within map, return it
-   if (IsValidTile(Vector2Int(x, y)))
+   if (IsValidCell(Vector2Int(x, y)))
    {
       return cellGrid[x][y];
    }
@@ -103,30 +104,42 @@ Cell NavMesh::GetCell(int x, int y)
    }
 }
 
-NavPath NavMesh::GetPathToPoint(Vector2 origin, Vector2 destination)
+NavPath NavMesh::GetPathToPoint(Vector2Int origin, Vector2Int destination)
 {
-   return NavPath();
+   //check cells are different, and that both in bounds
+   if (origin != destination && IsValidCell(origin) && IsValidCell(destination))
+   {
+      //create data structures for determining a path
+      std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>> frontier = std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>();
+
+      //add the origin cell to the frontier
+      frontier.push(CellData(origin, origin, 0, EstDist(destination - origin)));
+
+      //until the has been found
+      while (frontier.top().mSelf != destination)
+      {
+         
+      }
+   }
+   else
+   {
+      return NavPath();
+   }
 }
 
 NavPath NavMesh::GetPathToPoint(Cell origin, Cell destination)
 {
-   //check if path required
-   if (origin.GetCellCoordinate() == destination.GetCellCoordinate())
-   {
-      return NavPath();
-   }
-   //if the cells are different, proceed to finding path
-   else
-   {
-      
-   }
-
-   return NavPath();
+   //just call the vector2Int version w/ the cell coordinations of origin and destination
 }
 
-bool NavMesh::IsValidTile(Vector2Int tileCoords)
+bool NavMesh::IsValidCell(Vector2Int tileCoords)
 {
    return (tileCoords >= Vector2Int(0, 0) && tileCoords < Vector2Int(horizontal, vertical));
+}
+
+void NavMesh::PushNeighbors(Vector2Int cell, std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>& inFrontier)
+{
+   
 }
 
 void NavMesh::RegisterObstacle(Obstacle* inObstacle)
