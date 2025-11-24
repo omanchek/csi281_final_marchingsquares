@@ -116,6 +116,11 @@ Vector2 Square::GetBottomRight()
    return Vector2(topRight.x, bottomLeft.y);
 }
 
+Vector2 Square::GetCenter()
+{
+   return Vector2((topRight.x + bottomLeft.x) / 2, (topRight.y + bottomLeft.y) / 2);
+}
+
 Vector2 Square::GetTopLeft()
 {
    return Vector2(bottomLeft.x, topRight.y);

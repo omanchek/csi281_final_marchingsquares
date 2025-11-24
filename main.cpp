@@ -55,6 +55,9 @@ int main()
     Obstacle* obstacle2 = new Obstacle(shape2, 3);
     Obstacle* obstacle3 = new Obstacle(shape3, 4);
 
+    NavPath path = navMesh->GetPathToPoint(navMesh->GetCell(10, 12), navMesh->GetCell(50, 40));
+    std::cout << path.GetSize() << std::endl;
+
     //register any obstacles
     navMesh->RegisterObstacle(obstacle);
     navMesh->RegisterObstacle(obstacle2);
@@ -69,8 +72,8 @@ int main()
         ClearBackground(BLACK);
 
         //draw the navmesh
-        //navMesh->DrawNavmesh();
-        navMesh->GetPathToPoint(navMesh->GetCell(10, 12), navMesh->GetCell(30, 4));
+        navMesh->DrawNavmesh();        
+        path.DrawPath();
 
         //draw in the actual obstacle
         obstacle3->DrawObstacle();

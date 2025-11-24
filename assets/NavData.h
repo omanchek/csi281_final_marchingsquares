@@ -8,15 +8,18 @@ class NavPath
 {
    public:
       NavPath();
+      NavPath(std::list<Cell*> initPath);
       ~NavPath();
 
-      void AddCell(Cell& newCell);
-      Cell& GetFront();
-      Cell& GetBack();
+      void AddCell(Cell* newCell);
+      void DrawPath();
+      Cell* GetFront();
+      Cell* GetBack();
+      int GetSize();
       bool RemoveFront();
 
    private:
-      std::list<Cell> pathNodes;
+      std::list<Cell*> pathNodes;
 };
 
 #endif

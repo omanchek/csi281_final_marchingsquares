@@ -29,6 +29,7 @@ class Square
       //accessors
       Vector2 GetBottomLeft();
       Vector2 GetBottomRight();
+      Vector2 GetCenter();
       Vector2 GetTopLeft();
       Vector2 GetTopRight();
 

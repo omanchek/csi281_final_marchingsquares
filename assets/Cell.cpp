@@ -240,6 +240,11 @@ Vector2Int Cell::GetCellCoordinate()
    return coordinate;
 }
 
+Cell* Cell::GetParent()
+{
+   return pathParent;
+}
+
 float Cell::GetWeight()
 {
    return pathfindingValue;
@@ -248,6 +253,11 @@ float Cell::GetWeight()
 void Cell::SetCoordinatesInNavmesh(int x, int y)
 {
    coordinate = Vector2Int(x, y); 
+}
+
+void Cell::SetParent(Cell* parent)
+{
+   pathParent = parent;
 }
 
 void Cell::SetWeight(float weight)

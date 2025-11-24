@@ -89,7 +89,7 @@ void NavMesh::DrawNavmesh()
          }
 
          //draw based on the sum of overlaps
-         cellGrid[i][j]->DrawCellByOverlapData(dataIt, true);
+         cellGrid[i][j]->DrawCellByOverlapData(dataIt, false);
       }
    }
 }
@@ -130,6 +130,7 @@ NavPath NavMesh::GetPathToPoint(Cell* origin, Cell* destination)
 
    //push the start node to the data
    data.emplace(origin, CellData(origin, origin, 0, EstDist(destination->GetCellCoordinate() - origin->GetCellCoordinate())));
+   origin->SetParent(origin);
 
    //add the starting element to the frontier
    frontier.push(data.find(origin)->second);
@@ -149,13 +150,26 @@ NavPath NavMesh::GetPathToPoint(Cell* origin, Cell* destination)
 
    //until the origin is reached
    std::cout << data.size() << std::endl << std::endl;
-   for (auto& it : data)
+   frontier.top().mSelf->SetParent(frontier.top().mParent);
+   Cell* it = frontier.top().mSelf;
+   while (it != nullptr)
    {
-      it.second.DebugPrint();
-      it.second.mSelf->DrawCellByCase(15, false);
+      if (it->GetParent() != it)
+      {
+         //add the cell to the front of the path, the increment the iterator
+         std::cout << it->GetCellCoordinate() << std::endl;
+         path.push_front(it);
+         it = it->GetParent();
+      }
+      else
+      {
+         break;
+      }
    }
 
-   return NavPath();
+   NavPath pathToReturn = NavPath(path);
+   pathToReturn.DrawPath();
+   return pathToReturn;
 }
 
 bool NavMesh::IsValidCell(Vector2Int tileCoords)
@@ -165,6 +179,9 @@ bool NavMesh::IsValidCell(Vector2Int tileCoords)
 
 void NavMesh::PushNeighbors(CellData cellData, Cell* dest, std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>& inFrontier, std::unordered_map<Cell*, CellData>& inData)
 {
+   //update the parent for cell for this tile
+   cellData.mSelf->SetParent(cellData.mParent);
+
    //create cell iterator
    Cell* it;
    CellData dataToAdd;
