@@ -55,13 +55,14 @@ int main()
     Obstacle* obstacle2 = new Obstacle(shape2, 3);
     Obstacle* obstacle3 = new Obstacle(shape3, 4);
 
-    NavPath path = navMesh->GetPathToPoint(navMesh->GetCell(10, 12), navMesh->GetCell(50, 40));
-    std::cout << path.GetSize() << std::endl;
-
     //register any obstacles
     navMesh->RegisterObstacle(obstacle);
     navMesh->RegisterObstacle(obstacle2);
     navMesh->RegisterObstacle(obstacle3);
+
+    navMesh->DrawNavmesh();
+    NavPath path = navMesh->GetPathToPoint(navMesh->GetCell(1, 1), navMesh->GetCell(55, 59));
+    std::cout << path.GetSize() << std::endl;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -79,9 +80,9 @@ int main()
         obstacle3->DrawObstacle();
         obstacle2->DrawObstacle();
         obstacle->DrawObstacle();
-        obstacle3->DrawBoundingBox();
-        obstacle2->DrawBoundingBox();
-        obstacle->DrawBoundingBox();
+        //obstacle3->DrawBoundingBox();
+        //obstacle2->DrawBoundingBox();
+        //obstacle->DrawBoundingBox();
 
         //navMesh.GetPathToPoint(navMesh.GetCell(0, 0), navMesh.GetCell(10, 12));
 

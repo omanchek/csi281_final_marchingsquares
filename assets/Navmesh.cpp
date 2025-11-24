@@ -90,6 +90,7 @@ void NavMesh::DrawNavmesh()
 
          //draw based on the sum of overlaps
          cellGrid[i][j]->DrawCellByOverlapData(dataIt, false);
+         cellGrid[i][j]->SetOverlapData(dataIt);
       }
    }
 }
@@ -179,9 +180,6 @@ bool NavMesh::IsValidCell(Vector2Int tileCoords)
 
 void NavMesh::PushNeighbors(CellData cellData, Cell* dest, std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>& inFrontier, std::unordered_map<Cell*, CellData>& inData)
 {
-   //update the parent for cell for this tile
-   cellData.mSelf->SetParent(cellData.mParent);
-
    //create cell iterator
    Cell* it;
    CellData dataToAdd;
@@ -193,26 +191,32 @@ void NavMesh::PushNeighbors(CellData cellData, Cell* dest, std::priority_queue<C
       it = GetCell(cellData.mSelf->GetCellCoordinate() + NEIGHBOR_DIR[i]);
       if (it != nullptr)
       {
-         //check if the data map already contains a weight
-         if (inData.contains(it))
+         //check that the cell has no collisions
+         if (!it->GetOverlapData().AnyOverlaps())
          {
-            //generate the cell data to add
-            dataToAdd = CellData(it, cellData.mSelf, cellData.mG + 1, EstDist(dest->GetCellCoordinate() - it->GetCellCoordinate()));
-            
-            //check if should replace current
-            auto loc = inData.find(it);
-            if (dataToAdd < loc->second)
+            //check if the data map already contains a weight
+            if (inData.contains(it))
             {
-               loc->second = dataToAdd;
-               inFrontier.push(loc->second);
+               //generate the cell data to add
+               dataToAdd = CellData(it, cellData.mSelf, cellData.mG + 1, EstDist(dest->GetCellCoordinate() - it->GetCellCoordinate()));
+
+               //check if should replace current
+               auto loc = inData.find(it);
+               if (dataToAdd < loc->second)
+               {
+                  loc->second = dataToAdd;
+                  inFrontier.push(loc->second);
+                  it->SetParent(cellData.mSelf);
+               }
             }
-         }
-         else
-         {
-            //if there's no data, add this to the data map and the frontier
-            dataToAdd = CellData(it, cellData.mSelf, cellData.mG + 1, EstDist(dest->GetCellCoordinate() - it->GetCellCoordinate()));
-            inData.emplace(it, dataToAdd);
-            inFrontier.push(dataToAdd);
+            else
+            {
+               //if there's no data, add this to the data map and the frontier
+               dataToAdd = CellData(it, cellData.mSelf, cellData.mG + 1, EstDist(dest->GetCellCoordinate() - it->GetCellCoordinate()));
+               inData.emplace(it, dataToAdd);
+               inFrontier.push(dataToAdd);
+               it->SetParent(cellData.mSelf);
+            }
          }
       }
    }

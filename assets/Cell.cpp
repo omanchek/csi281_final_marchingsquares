@@ -240,6 +240,11 @@ Vector2Int Cell::GetCellCoordinate()
    return coordinate;
 }
 
+OverlapData Cell::GetOverlapData()
+{
+   return currentOverlaps;
+}
+
 Cell* Cell::GetParent()
 {
    return pathParent;
@@ -253,6 +258,11 @@ float Cell::GetWeight()
 void Cell::SetCoordinatesInNavmesh(int x, int y)
 {
    coordinate = Vector2Int(x, y); 
+}
+
+void Cell::SetOverlapData(OverlapData inData)
+{
+   currentOverlaps = inData;
 }
 
 void Cell::SetParent(Cell* parent)

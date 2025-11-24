@@ -8,6 +8,7 @@ struct OverlapData
    OverlapData();
    OverlapData(bool inBL, bool inBR, bool inTL, bool inTR);
 
+   bool AnyOverlaps();
    void DebugPrintOverlapResults();
    void operator=(const OverlapData& rhs);
    void operator+(const OverlapData& rhs);

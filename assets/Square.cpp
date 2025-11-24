@@ -14,6 +14,11 @@ OverlapData::OverlapData(bool inBL, bool inBR, bool inTL, bool inTR)
    tRight = inTR;
 }
 
+bool OverlapData::AnyOverlaps()
+{
+   return (bLeft == true || bRight == true || tLeft == true || tRight == true);
+}
+
 void OverlapData::DebugPrintOverlapResults()
 {
    std::cout << "Overlap Results: " << std::endl

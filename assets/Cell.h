@@ -18,9 +18,11 @@ class Cell : public Square
       void DrawCellByOverlapData(OverlapData inData, bool debugDraw);
 
       Vector2Int GetCellCoordinate();
+      OverlapData GetOverlapData();
       Cell* GetParent();
       float GetWeight();
       void SetCoordinatesInNavmesh(int x, int y);
+      void SetOverlapData(OverlapData inData);
       void SetParent(Cell* parent);
       void SetWeight(float weight);
 
@@ -34,6 +36,7 @@ class Cell : public Square
       Vector2 rightCenter;
 
       Vector2Int coordinate = Vector2Int();
+      OverlapData currentOverlaps = OverlapData();
 
       float pathfindingValue;
       Cell* pathParent = nullptr;
