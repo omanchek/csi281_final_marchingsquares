@@ -69,8 +69,8 @@ int main()
         ClearBackground(BLACK);
 
         //draw the navmesh
-        navMesh->DrawNavmesh();
-        //navMesh->GetPathToPoint(navMesh->GetCell(0, 1), navMesh->GetCell(4, 7));
+        //navMesh->DrawNavmesh();
+        navMesh->GetPathToPoint(navMesh->GetCell(10, 12), navMesh->GetCell(30, 4));
 
         //draw in the actual obstacle
         obstacle3->DrawObstacle();
