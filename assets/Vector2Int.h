@@ -13,6 +13,7 @@ struct Vector2Int
    bool operator>=(const Vector2Int& rhs);
    bool operator<(const Vector2Int& rhs);
    void operator=(const Vector2Int& rhs);
+   bool operator==(const Vector2Int& rhs);
    Vector2Int operator-(const Vector2Int& rhs);
 };
 

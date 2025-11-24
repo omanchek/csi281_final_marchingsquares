@@ -70,6 +70,7 @@ int main()
 
         //draw the navmesh
         navMesh->DrawNavmesh();
+        //navMesh->GetPathToPoint(navMesh->GetCell(0, 1), navMesh->GetCell(4, 7));
 
         //draw in the actual obstacle
         obstacle3->DrawObstacle();

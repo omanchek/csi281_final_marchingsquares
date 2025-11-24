@@ -18,7 +18,12 @@ class Cell : public Square
       void DrawCellByOverlapData(OverlapData inData, bool debugDraw);
 
       Vector2Int GetCellCoordinate();
+      float GetWeight();
       void SetCoordinatesInNavmesh(int x, int y);
+      void SetWeight(float weight);
+
+      bool operator<(const Cell& rhs) const;
+      bool operator>(const Cell& rhs) const;
 
    private:
       Vector2 bottomCenter;

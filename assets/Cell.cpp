@@ -240,7 +240,27 @@ Vector2Int Cell::GetCellCoordinate()
    return coordinate;
 }
 
+float Cell::GetWeight()
+{
+   return pathfindingValue;
+}
+
 void Cell::SetCoordinatesInNavmesh(int x, int y)
 {
    coordinate = Vector2Int(x, y); 
+}
+
+void Cell::SetWeight(float weight)
+{
+   pathfindingValue = weight;
+}
+
+bool Cell::operator<(const Cell& rhs) const
+{
+   return (pathfindingValue < rhs.pathfindingValue);
+}
+
+bool Cell::operator>(const Cell& rhs) const
+{
+   return (pathfindingValue > rhs.pathfindingValue);
 }

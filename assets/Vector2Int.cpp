@@ -24,6 +24,11 @@ void Vector2Int::operator=(const Vector2Int& rhs)
    x = rhs.x; y = rhs.y;
 }
 
+bool Vector2Int::operator==(const Vector2Int& rhs)
+{
+   return (x == rhs.x && y == rhs.y);
+}
+
 Vector2Int Vector2Int::operator-(const Vector2Int& rhs)
 {
    return Vector2Int(x - rhs.x, y - rhs.y);
