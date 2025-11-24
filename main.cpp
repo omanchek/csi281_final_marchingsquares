@@ -1,6 +1,7 @@
 #include <iostream>
 #include "assets/Obstacle.h"
 #include "assets/Navmesh.h"
+#include "assets/NavMeshAgent.h"
 #include <raygui.h>
 #include <raylib.h>
 #include <cstdint>
@@ -64,6 +65,8 @@ int main()
     NavPath path = navMesh->GetPathToPoint(Vector2Int(1, 1), Vector2Int(55, 59));
     std::cout << path.GetSize() << std::endl;
 
+    //NavMeshAgent agent(path);
+
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -78,6 +81,8 @@ int main()
         obstacle3->DrawObstacle();
         obstacle2->DrawObstacle();
         obstacle->DrawObstacle();
+
+        //agent.draw();
 
         EndDrawing();
     }

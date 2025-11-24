@@ -8,6 +8,7 @@ class NavMeshAgent
 {
 public:
 	NavMeshAgent(NavPath& currentPath);
+	void draw();
 	void MoveAgent();
 	NavPath& GetPath();
 
