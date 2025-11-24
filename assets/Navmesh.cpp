@@ -120,57 +120,73 @@ Cell* NavMesh::GetCell(Vector2Int coord)
 
 NavPath NavMesh::GetPathToPoint(Vector2Int origin, Vector2Int destination)
 {
-   return NavPath();
+   return GetPathToPoint(GetCell(origin), GetCell(destination));
 }
 
 NavPath NavMesh::GetPathToPoint(Cell* origin, Cell* destination)
 {
-   //create a priority queue for the frontier, and create dictionary to map cells to pathfinding data
-   std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>> frontier = std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>();
-   std::unordered_map<Cell*, CellData> data = std::unordered_map<Cell*, CellData>();
-
-   //push the start node to the data
-   data.emplace(origin, CellData(origin, origin, 0, EstDist(destination->GetCellCoordinate() - origin->GetCellCoordinate())));
-   origin->SetParent(origin);
-
-   //add the starting element to the frontier
-   frontier.push(data.find(origin)->second);
-
-   while (frontier.top().mSelf != destination)
+   if (origin != destination && origin != nullptr && destination != nullptr)
    {
-      //copy next in queue, then pop from queue
-      CellData top = frontier.top();
-      frontier.pop();
-
-      //generate neighbors from top
-      PushNeighbors(top, destination, frontier, data);
-   }
-
-   //make a path
-   std::list<Cell*> path = std::list<Cell*>();
-
-   //until the origin is reached
-   std::cout << data.size() << std::endl << std::endl;
-   frontier.top().mSelf->SetParent(frontier.top().mParent);
-   Cell* it = frontier.top().mSelf;
-   while (it != nullptr)
-   {
-      if (it->GetParent() != it)
+      if (!origin->GetOverlapData().AnyOverlaps() && !destination->GetOverlapData().AnyOverlaps())
       {
-         //add the cell to the front of the path, the increment the iterator
-         std::cout << it->GetCellCoordinate() << std::endl;
-         path.push_front(it);
-         it = it->GetParent();
+         //create a priority queue for the frontier, and create dictionary to map cells to pathfinding data
+         std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>> frontier = std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>();
+         std::unordered_map<Cell*, CellData> data = std::unordered_map<Cell*, CellData>();
+
+         //push the start node to the data
+         data.emplace(origin, CellData(origin, origin, 0, EstDist(destination->GetCellCoordinate() - origin->GetCellCoordinate())));
+         origin->SetParent(origin);
+
+         //add the starting element to the frontier
+         frontier.push(data.find(origin)->second);
+
+         while (frontier.top().mSelf != destination)
+         {
+            //copy next in queue, then pop from queue
+            CellData top = frontier.top();
+            frontier.pop();
+
+            //generate neighbors from top
+            PushNeighbors(top, destination, frontier, data);
+         }
+
+         //make a path
+         std::list<Cell*> path = std::list<Cell*>();
+
+         //until the origin is reached
+         std::cout << data.size() << std::endl << std::endl;
+         frontier.top().mSelf->SetParent(frontier.top().mParent);
+         Cell* it = frontier.top().mSelf;
+         while (it != nullptr)
+         {
+            if (it->GetParent() != it)
+            {
+               //add the cell to the front of the path, the increment the iterator
+               std::cout << it->GetCellCoordinate() << std::endl;
+               path.push_front(it);
+               it = it->GetParent();
+            }
+            //if the parent of the current cell is itself, the origin has been reached
+            else
+            {
+               break;
+            }
+         }
+
+         //constructor a nav path from the data and return it
+         NavPath pathToReturn = NavPath(path);
+         pathToReturn.DrawPath();
+         return pathToReturn;
       }
       else
       {
-         break;
+         return NavPath();
       }
    }
-
-   NavPath pathToReturn = NavPath(path);
-   pathToReturn.DrawPath();
-   return pathToReturn;
+   else
+   {
+      return NavPath();
+   }
 }
 
 bool NavMesh::IsValidCell(Vector2Int tileCoords)

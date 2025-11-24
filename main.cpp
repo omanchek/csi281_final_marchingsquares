@@ -61,14 +61,12 @@ int main()
     navMesh->RegisterObstacle(obstacle3);
 
     navMesh->DrawNavmesh();
-    NavPath path = navMesh->GetPathToPoint(navMesh->GetCell(1, 1), navMesh->GetCell(55, 59));
+    NavPath path = navMesh->GetPathToPoint(Vector2Int(1, 1), Vector2Int(55, 59));
     std::cout << path.GetSize() << std::endl;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // drawing logic goes here
-        
         BeginDrawing();
         ClearBackground(BLACK);
 
@@ -80,11 +78,6 @@ int main()
         obstacle3->DrawObstacle();
         obstacle2->DrawObstacle();
         obstacle->DrawObstacle();
-        //obstacle3->DrawBoundingBox();
-        //obstacle2->DrawBoundingBox();
-        //obstacle->DrawBoundingBox();
-
-        //navMesh.GetPathToPoint(navMesh.GetCell(0, 0), navMesh.GetCell(10, 12));
 
         EndDrawing();
     }
