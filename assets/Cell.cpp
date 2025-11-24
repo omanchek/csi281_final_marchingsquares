@@ -43,7 +43,7 @@ void Cell::DrawValueOne()
     DrawCircle(topCenter.x, topCenter.y, 2, BLUE);
 }
 
-bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
+bool Cell::DrawCellByCase(unsigned int caseValue, Color walkable, Color blocked, bool debugDraw)
 {
    //check should draw debug outline points
    if (debugDraw)
@@ -56,79 +56,79 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
       case 0:
         return false;
       case 1:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawTriangle(leftCenter, bottomLeft, bottomCenter, PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawTriangle(leftCenter, bottomLeft, bottomCenter, walkable);
         break;
 
       case 2:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawTriangle(bottomCenter, bottomRight, rightCenter, PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawTriangle(bottomCenter, bottomRight, rightCenter, walkable);
         break;
 
       case 3:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawRectangle(leftCenter.x, leftCenter.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawRectangle(leftCenter.x, leftCenter.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), walkable);
         break;
 
       case 4:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawTriangle(topCenter, rightCenter, topRight, PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawTriangle(topCenter, rightCenter, topRight, walkable);
         break;
 
       case 5:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-        DrawTriangle(bottomCenter, bottomRight, rightCenter, BLACK);
-        DrawTriangle(topCenter, topLeft, leftCenter, BLACK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
+        DrawTriangle(bottomCenter, bottomRight, rightCenter, blocked);
+        DrawTriangle(topCenter, topLeft, leftCenter, blocked);
         break;
 
       case 6:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawRectangle(bottomCenter.x, topCenter.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawRectangle(bottomCenter.x, topCenter.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), walkable);
         break;
 
       case 7:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-          DrawTriangle(topCenter, topLeft, leftCenter, BLACK);
+          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
+          DrawTriangle(topCenter, topLeft, leftCenter, blocked);
         break;
 
       case 8:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-          DrawTriangle(topCenter, topLeft, leftCenter, PINK);
+          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+          DrawTriangle(topCenter, topLeft, leftCenter, walkable);
         break;
 
       case 9:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawRectangle(bottomLeft.x, topLeft.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawRectangle(bottomLeft.x, topLeft.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), walkable);
         break;
 
       case 10:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-        DrawTriangle(topCenter, rightCenter, topRight, BLACK);
-        DrawTriangle(leftCenter, bottomLeft, bottomCenter, BLACK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
+        DrawTriangle(topCenter, rightCenter, topRight, blocked);
+        DrawTriangle(leftCenter, bottomLeft, bottomCenter, blocked);
         break;
 
       case 11:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-        DrawTriangle(topCenter, rightCenter, topRight, BLACK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
+        DrawTriangle(topCenter, rightCenter, topRight, blocked);
         break;
 
       case 12:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), BLACK);
-        DrawRectangle(topLeft.x, topRight.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawRectangle(topLeft.x, topRight.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), walkable);
         break;
 
       case 13:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-        DrawTriangle(bottomCenter, bottomRight, rightCenter, BLACK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
+        DrawTriangle(bottomCenter, bottomRight, rightCenter, blocked);
         break;
 
       case 14:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
-        DrawTriangle(leftCenter, bottomLeft, bottomCenter, BLACK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
+        DrawTriangle(leftCenter, bottomLeft, bottomCenter, blocked);
         break;
 
       case 15:
-        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), PINK);
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
         break;
 
       default:
@@ -136,102 +136,102 @@ bool Cell::DrawCellByCase(unsigned int caseValue, bool debugDraw)
    }
 }
 
-void Cell::DrawCellByOverlapData(OverlapData inData, bool debugDraw)
+void Cell::DrawCellByOverlapData(OverlapData inData, Color walkable, Color blocked, bool debugDraw)
 {
    //case 0
    if (inData.bLeft && inData.bRight && inData.tLeft && inData.tRight)
    {
-      DrawCellByCase(0, debugDraw);
+      DrawCellByCase(0, walkable, blocked, debugDraw);
    }
 
    //case 1
    else if (!inData.bLeft && inData.bRight && inData.tLeft && inData.tRight)
    {
-      DrawCellByCase(1, debugDraw);
+      DrawCellByCase(1, walkable, blocked, debugDraw);
    }
 
    //case 2
    else if (inData.bLeft && !inData.bRight && inData.tLeft && inData.tRight)
    {
-      DrawCellByCase(2, debugDraw);
+      DrawCellByCase(2, walkable, blocked, debugDraw);
    }
 
    //case 3
    else if (!inData.bLeft && !inData.bRight && inData.tLeft && inData.tRight)
    {
-      DrawCellByCase(3, debugDraw);
+      DrawCellByCase(3, walkable, blocked, debugDraw);
    }
 
    //case 4
    else if (inData.bLeft && inData.bRight && inData.tLeft && !inData.tRight)
    {
-      DrawCellByCase(4, debugDraw);
+      DrawCellByCase(4, walkable, blocked, debugDraw);
    }
 
    //case 5
    else if (!inData.bLeft && inData.bRight && inData.tLeft && !inData.tRight)
    {
-      DrawCellByCase(5, debugDraw);
+      DrawCellByCase(5, walkable, blocked, debugDraw);
    }
 
    //case 6
    else if (inData.bLeft && !inData.bRight && inData.tLeft && !inData.tRight)
    {
-       DrawCellByCase(6, debugDraw);
+       DrawCellByCase(6, walkable, blocked, debugDraw);
    }
 
    //case 7
    else if (!inData.bLeft && !inData.bRight && inData.tLeft && !inData.tRight)
    {
-       DrawCellByCase(7, debugDraw);
+       DrawCellByCase(7, walkable, blocked, debugDraw);
    }
 
    //case 8
    else if (inData.bLeft && inData.bRight && !inData.tLeft && inData.tRight)
    {
-       DrawCellByCase(8, debugDraw);
+       DrawCellByCase(8, walkable, blocked, debugDraw);
    }
 
    //case 9
    else if (!inData.bLeft && inData.bRight && !inData.tLeft && inData.tRight)
    {
-       DrawCellByCase(9, debugDraw);
+       DrawCellByCase(9, walkable, blocked, debugDraw);
    }
 
    //case 10
    else if (inData.bLeft && !inData.bRight && !inData.tLeft && inData.tRight)
    {
-       DrawCellByCase(10, debugDraw);
+       DrawCellByCase(10, walkable, blocked, debugDraw);
    }
 
    //case 11
    else if (!inData.bLeft && !inData.bRight && !inData.tLeft && inData.tRight)
    {
-       DrawCellByCase(11, debugDraw);
+       DrawCellByCase(11, walkable, blocked, debugDraw);
    }
 
    //case 12
    else if (inData.bLeft && inData.bRight && !inData.tLeft && !inData.tRight)
    {
-       DrawCellByCase(12, debugDraw);
+       DrawCellByCase(12, walkable, blocked, debugDraw);
    }
 
    //case 13
    else if (!inData.bLeft && inData.bRight && !inData.tLeft && !inData.tRight)
    {
-       DrawCellByCase(13, debugDraw);
+       DrawCellByCase(13, walkable, blocked, debugDraw);
    }
 
    //case 14
    else if (inData.bLeft && !inData.bRight && !inData.tLeft && !inData.tRight)
    {
-       DrawCellByCase(14, debugDraw);
+       DrawCellByCase(14, walkable, blocked, debugDraw);
    }
 
    //case 15
    else
    {
-      DrawCellByCase(15, debugDraw);
+      DrawCellByCase(15, walkable, blocked, debugDraw);
    }
 }
 

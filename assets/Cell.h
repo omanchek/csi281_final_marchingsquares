@@ -14,8 +14,8 @@ class Cell : public Square
       ~Cell();
       void DrawValueOne();
 
-      bool DrawCellByCase(unsigned int caseValue, bool debugDraw);
-      void DrawCellByOverlapData(OverlapData inData, bool debugDraw);
+      bool DrawCellByCase(unsigned int caseValue, Color walkable, Color blocked, bool debugDraw);
+      void DrawCellByOverlapData(OverlapData inData, Color walkable, Color blocked, bool debugDraw);
 
       Vector2Int GetCellCoordinate();
       OverlapData GetOverlapData();

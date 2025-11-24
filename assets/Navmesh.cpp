@@ -89,7 +89,7 @@ void NavMesh::DrawNavmesh()
          }
 
          //draw based on the sum of overlaps
-         cellGrid[i][j]->DrawCellByOverlapData(dataIt, false);
+         cellGrid[i][j]->DrawCellByOverlapData(dataIt, GRAY, RED, false);
          cellGrid[i][j]->SetOverlapData(dataIt);
       }
    }

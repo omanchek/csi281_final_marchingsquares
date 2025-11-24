@@ -45,7 +45,7 @@ int main()
     const int imgWidth = 400;
     const int imgHeight = 400;
 
-    InitWindow(screenWidth, screenHeight, "Pixel Manipulation");
+    InitWindow(screenWidth, screenHeight, "Marching Squares");
 
     SetTargetFPS(60);
 
