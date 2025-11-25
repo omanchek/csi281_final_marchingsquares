@@ -56,78 +56,93 @@ bool Cell::DrawCellByCase(unsigned int caseValue, Color walkable, Color blocked,
       case 0:
         return false;
       case 1:
+        // Draws case 2 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
         DrawTriangle(leftCenter, bottomLeft, bottomCenter, walkable);
         break;
 
       case 2:
+        // Draws case 3 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
         DrawTriangle(bottomCenter, bottomRight, rightCenter, walkable);
         break;
 
       case 3:
+        // Draws case 4 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
         DrawRectangle(leftCenter.x, leftCenter.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), walkable);
         break;
 
       case 4:
+        // Draws case 5 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
         DrawTriangle(topCenter, rightCenter, topRight, walkable);
         break;
 
       case 5:
+        // Draws case 6 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
         DrawTriangle(bottomCenter, bottomRight, rightCenter, blocked);
         DrawTriangle(topCenter, topLeft, leftCenter, blocked);
         break;
 
       case 6:
+        // Draws case 7 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
         DrawRectangle(bottomCenter.x, topCenter.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), walkable);
         break;
 
       case 7:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
-          DrawTriangle(topCenter, topLeft, leftCenter, blocked);
+        // Draws case 8 square
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
+        DrawTriangle(topCenter, topLeft, leftCenter, blocked);
         break;
 
       case 8:
-          DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
-          DrawTriangle(topCenter, topLeft, leftCenter, walkable);
+        // Draws case 9 square
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        DrawTriangle(topCenter, topLeft, leftCenter, walkable);
         break;
 
       case 9:
+        // Draws case 10 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
         DrawRectangle(bottomLeft.x, topLeft.y, ((rightCenter.x - bottomCenter.x)), (bottomCenter.y - topCenter.y), walkable);
         break;
 
       case 10:
+        // Draws case 11 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
         DrawTriangle(topCenter, rightCenter, topRight, blocked);
         DrawTriangle(leftCenter, bottomLeft, bottomCenter, blocked);
         break;
 
       case 11:
+        // Draws case 12 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
         DrawTriangle(topCenter, rightCenter, topRight, blocked);
         break;
 
       case 12:
+        // Draws case 13 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
         DrawRectangle(topLeft.x, topRight.y, (rightCenter.x - leftCenter.x), ((bottomCenter.y - topCenter.y) / 2), walkable);
         break;
 
       case 13:
+        // Draws case 14 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
         DrawTriangle(bottomCenter, bottomRight, rightCenter, blocked);
         break;
 
       case 14:
+        // Draws case 15 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
         DrawTriangle(leftCenter, bottomLeft, bottomCenter, blocked);
         break;
 
       case 15:
+        // Draws case 16 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), walkable);
         break;
 
