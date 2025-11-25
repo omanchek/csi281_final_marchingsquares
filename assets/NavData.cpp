@@ -60,8 +60,10 @@ Cell* NavPath::GetBack()
 
 void NavPath::GetNext()
 {
+    // Checks if the size of the path list is greater than zero
     if (pathNodes.size() > 0)
     {
+        // If so, pops the head of the list so that the next cell becomes the head
         pathNodes.pop_front();
     }
 }

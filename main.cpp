@@ -89,10 +89,10 @@ int main()
         obstacle2->DrawObstacle();
         obstacle->DrawObstacle();
 
+        // Draws the agent that moves around the navmesh
         agent.draw();
+        // Moves the agent to the next cell
         agent.MoveAgent();
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
         EndDrawing();
     }
