@@ -18,9 +18,10 @@ void NavMeshAgent::draw()
 
 void NavMeshAgent::MoveAgent()
 {
-   while (path->RemoveFront() != false)
+	path->GetNext();
+	if (path->GetSize() > 0)
 	{
-		path->RemoveFront();
+		center = path->GetFront()->GetCenter();
 	}
 }
 

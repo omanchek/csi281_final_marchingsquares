@@ -58,9 +58,12 @@ Cell* NavPath::GetBack()
     return pathNodes.back();
 }
 
-Cell* NavPath::GetNext()
+void NavPath::GetNext()
 {
-    pathNodes.begin() = std::next(pathNodes);
+    if (pathNodes.size() > 0)
+    {
+        pathNodes.pop_front();
+    }
 }
 
 int NavPath::GetSize()

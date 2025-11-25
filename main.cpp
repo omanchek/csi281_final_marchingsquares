@@ -7,6 +7,13 @@
 #include <cstdint>
 #include "assets/Cell.h"
 
+/*
+* Used this forum thread to figure out how to delay the program for a certain amount of time
+* https://stackoverflow.com/questions/158585/how-do-you-add-a-timed-delay-to-a-c-program
+*/
+#include <chrono>
+#include <thread>
+
 #define RAYGUI_IMPLEMENTATION
 //#include <raygui.h>
 
@@ -83,7 +90,9 @@ int main()
         obstacle->DrawObstacle();
 
         agent.draw();
-        //agent.MoveAgent();
+        agent.MoveAgent();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
         EndDrawing();
     }

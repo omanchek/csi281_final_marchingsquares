@@ -3,6 +3,7 @@
 
 #include "Cell.h"
 #include <list>
+#include <algorithm>
 
 class NavPath
 {
@@ -15,7 +16,7 @@ class NavPath
       void DrawPath();
       Cell* GetFront();
       Cell* GetBack();
-      Cell* GetNext();
+      void GetNext();
       int GetSize();
       bool RemoveFront();
 
