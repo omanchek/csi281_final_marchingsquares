@@ -65,7 +65,7 @@ int main()
     NavPath path = navMesh->GetPathToPoint(Vector2Int(1, 1), Vector2Int(55, 59));
     std::cout << path.GetSize() << std::endl;
 
-    //NavMeshAgent agent(path);
+    NavMeshAgent agent(path);
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -82,7 +82,8 @@ int main()
         obstacle2->DrawObstacle();
         obstacle->DrawObstacle();
 
-        //agent.draw();
+        agent.draw();
+        //agent.MoveAgent();
 
         EndDrawing();
     }

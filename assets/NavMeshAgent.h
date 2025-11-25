@@ -14,11 +14,9 @@ public:
 
 private:
 	NavPath* path;
-	NavMesh navMesh;
-	float centerX;
-	float centerY;
+	Vector2 center;
 	float radius;
-	Color color;
+	Color color = PINK;
 };
 
 

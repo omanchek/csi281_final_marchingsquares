@@ -58,6 +58,11 @@ Cell* NavPath::GetBack()
     return pathNodes.back();
 }
 
+Cell* NavPath::GetNext()
+{
+    pathNodes.begin() = std::next(pathNodes);
+}
+
 int NavPath::GetSize()
 {
    return pathNodes.size();

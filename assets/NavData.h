@@ -15,6 +15,7 @@ class NavPath
       void DrawPath();
       Cell* GetFront();
       Cell* GetBack();
+      Cell* GetNext();
       int GetSize();
       bool RemoveFront();
 
