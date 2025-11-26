@@ -60,14 +60,15 @@ int main()
     //define the navmesh and obstacles
     NavMesh* navMesh = new NavMesh(Vector2(25, 25), 10, 64, 60);
     std::vector<Obstacle*> obstacles = std::vector<Obstacle*>();
-    Obstacle* obstacle = new Obstacle(shape1, 10);
-    Obstacle* obstacle2 = new Obstacle(shape2, 3);
-    Obstacle* obstacle3 = new Obstacle(shape3, 4);
+    obstacles.push_back(new Obstacle(shape1, 10));
+    obstacles.push_back(new Obstacle(shape2, 3));
+    obstacles.push_back(new Obstacle(shape3, 4));
 
     //register any obstacles
-    navMesh->RegisterObstacle(obstacle);
-    navMesh->RegisterObstacle(obstacle2);
-    navMesh->RegisterObstacle(obstacle3);
+    for (int i = 0; i < obstacles.size(); i++)
+    {
+      navMesh->RegisterObstacle(obstacles[i]);
+    }
 
     navMesh->DrawNavmesh();
     NavPath path = navMesh->GetPathToPoint(Vector2Int(1, 1), Vector2Int(55, 59));
@@ -94,10 +95,11 @@ int main()
         navMesh->DrawNavmesh();        
         path.DrawPath();
 
-        //draw in the actual obstacle
-        obstacle3->DrawObstacle();
-        obstacle2->DrawObstacle();
-        obstacle->DrawObstacle();
+        //draw in the actual obstacles
+        for (int i = 0; i < obstacles.size(); i++)
+        {
+           obstacles[i]->DrawObstacle();
+        }
 
         // Draws the agent that moves around the navmesh
         agent.draw();
@@ -107,7 +109,10 @@ int main()
         EndDrawing();
     }
 
+    //cleanup memory
     delete navMesh;
+    while (obstacles.size() > 0) obstacles.pop_back();
+
 
     CloseWindow();
     return 0;
