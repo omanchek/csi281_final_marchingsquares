@@ -13,9 +13,10 @@
 class NavMeshAgent
 {
 public:
-	NavMeshAgent(NavPath& currentPath);
+	NavMeshAgent(NavPath& currentPath, Vector2 centerBail);
 	void draw();
 	void MoveAgent();
+   Vector2 GetCenter() { return center; }
 	NavPath& GetPath();
 
 private:

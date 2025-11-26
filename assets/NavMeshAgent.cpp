@@ -2,13 +2,20 @@
 //#include "NavData.h"
 
 // sets the path for the Agent
-NavMeshAgent::NavMeshAgent(NavPath& currentPath)
+NavMeshAgent::NavMeshAgent(NavPath& currentPath, Vector2 centerBail)
 {
 	// Sets the agent's path to the path set by the NavData
 	path = &currentPath;
 
-	// Sets the center to the center of the first cell in the list
-	center = path->GetFront()->GetCenter();
+	// Sets the center to the center of the first cell in the list (if the path has any nodes)
+   if (path->GetSize() > 0)
+   {
+      center = path->GetFront()->GetCenter();
+   }
+   else
+   {
+      center = centerBail;
+   }
 	// Sets the radius of the circle to 5
 	radius = 5;
 }

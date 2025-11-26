@@ -50,12 +50,26 @@ void NavPath::DrawPath()
 
 Cell* NavPath::GetFront()
 {
-   return pathNodes.front();
+   if (pathNodes.size() > 0)
+   {
+      return pathNodes.front();
+   }
+   else
+   {
+      return nullptr;
+   }
 }
 
 Cell* NavPath::GetBack()
 {
-    return pathNodes.back();
+   if (pathNodes.size() > 0)
+   {
+      return pathNodes.back();
+   }
+   else
+   {
+      return nullptr;
+   }
 }
 
 void NavPath::GetNext()

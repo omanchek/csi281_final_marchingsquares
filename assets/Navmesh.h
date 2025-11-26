@@ -49,6 +49,7 @@ class NavMesh
       float EstDist(Vector2Int diff);
       Cell* GetCell(int x, int y);
       Cell* GetCell(Vector2Int coord);
+      Vector2Int GetCellFromPosition(Vector2 pos);
       NavPath GetPathToPoint(Vector2Int origin, Vector2Int destination);
       NavPath GetPathToPoint(Cell* origin, Cell* destination);
       bool IsValidCell(Vector2Int tileCoords);
@@ -59,6 +60,7 @@ class NavMesh
       Cell*** cellGrid;
       std::vector<Obstacle*> obstacles;
       int cellSize, horizontal, vertical;
+      Vector2 offset;
 };
 
 #endif

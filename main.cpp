@@ -59,6 +59,7 @@ int main()
 
     //define the navmesh and obstacles
     NavMesh* navMesh = new NavMesh(Vector2(25, 25), 10, 64, 60);
+    std::vector<Obstacle*> obstacles = std::vector<Obstacle*>();
     Obstacle* obstacle = new Obstacle(shape1, 10);
     Obstacle* obstacle2 = new Obstacle(shape2, 3);
     Obstacle* obstacle3 = new Obstacle(shape3, 4);
@@ -72,13 +73,22 @@ int main()
     NavPath path = navMesh->GetPathToPoint(Vector2Int(1, 1), Vector2Int(55, 59));
     std::cout << path.GetSize() << std::endl;
 
-    NavMeshAgent agent(path);
+    NavMeshAgent agent(path, Vector2(0,0));
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         BeginDrawing();
         ClearBackground(BLACK);
+
+        //check if the goal has been adjusted
+        if (IsMouseButtonPressed(0))
+        {
+           Vector2Int currentAgentCell = navMesh->GetCellFromPosition(agent.GetCenter());
+           Vector2Int mouseCell = navMesh->GetCellFromPosition(GetMousePosition());
+           path = navMesh->GetPathToPoint(currentAgentCell, mouseCell);
+           agent = NavMeshAgent(path, agent.GetCenter());
+        }
 
         //draw the navmesh
         navMesh->DrawNavmesh();        

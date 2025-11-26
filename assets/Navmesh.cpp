@@ -15,6 +15,7 @@ NavMesh::NavMesh(Vector2 baseOffset, int inCellSize, int inHorizontal, int inVer
    cellSize = inCellSize;
    horizontal = inHorizontal;
    vertical = inVertical;
+   offset = baseOffset;
 
    //define vectors to store bottom left and top right points
    Vector2 b, t;
@@ -118,6 +119,26 @@ Cell* NavMesh::GetCell(Vector2Int coord)
    return GetCell(coord.x, coord.y);
 }
 
+Vector2Int NavMesh::GetCellFromPosition(Vector2 pos)
+{
+   //adjust the given position based on the offset of the navmesh to simplify calculations
+   Vector2 adjustedPos = Vector2(pos.x - offset.x, pos.y - offset.y);
+
+   //determine the raw cell indices for each dimension
+   int horizontalCell = adjustedPos.x / cellSize;
+   int verticalCell = adjustedPos.y / cellSize;
+
+   //determine if both dimensions are within the bounds of the nav mesh
+   if (horizontalCell < horizontal && verticalCell < vertical)
+   {
+      return Vector2Int(horizontalCell, verticalCell);
+   }
+   else
+   {
+      return Vector2Int(0, 0);
+   }
+}
+
 NavPath NavMesh::GetPathToPoint(Vector2Int origin, Vector2Int destination)
 {
    return GetPathToPoint(GetCell(origin), GetCell(destination));
@@ -162,7 +183,7 @@ NavPath NavMesh::GetPathToPoint(Cell* origin, Cell* destination)
             if (it->GetParent() != it)
             {
                //add the cell to the front of the path, the increment the iterator
-               std::cout << it->GetCellCoordinate() << std::endl;
+               //std::cout << it->GetCellCoordinate() << std::endl;
                path.push_front(it);
                it = it->GetParent();
             }
