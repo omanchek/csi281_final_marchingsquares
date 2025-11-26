@@ -161,36 +161,46 @@ NavPath NavMesh::GetPathToPoint(Cell* origin, Cell* destination)
          //add the starting element to the frontier
          frontier.push(data.find(origin)->second);
 
-         while (frontier.top().mSelf != destination)
+         //as long as the frontier has cells to visit
+         while (frontier.size() > 0)
          {
-            //copy next in queue, then pop from queue
-            CellData top = frontier.top();
-            frontier.pop();
+            //check that top isn't destination
+            if (frontier.top().mSelf != destination)
+            {
+               //copy next in queue, then pop from queue
+               CellData top = frontier.top();
+               frontier.pop();
 
-            //generate neighbors from top
-            PushNeighbors(top, destination, frontier, data);
+               //generate neighbors from top
+               PushNeighbors(top, destination, frontier, data);
+            }
+            else break;
          }
 
          //make a path
          std::list<Cell*> path = std::list<Cell*>();
 
-         //until the origin is reached
-         std::cout << data.size() << std::endl << std::endl;
-         frontier.top().mSelf->SetParent(frontier.top().mParent);
-         Cell* it = frontier.top().mSelf;
-         while (it != nullptr)
+         //if there's a frontier to backtrack from
+         if (frontier.size() > 0)
          {
-            if (it->GetParent() != it)
+            //until the origin is reached
+            std::cout << data.size() << std::endl << std::endl;
+            frontier.top().mSelf->SetParent(frontier.top().mParent);
+            Cell* it = frontier.top().mSelf;
+            while (it != nullptr)
             {
-               //add the cell to the front of the path, the increment the iterator
-               //std::cout << it->GetCellCoordinate() << std::endl;
-               path.push_front(it);
-               it = it->GetParent();
-            }
-            //if the parent of the current cell is itself, the origin has been reached
-            else
-            {
-               break;
+               if (it->GetParent() != it)
+               {
+                  //add the cell to the front of the path, the increment the iterator
+                  //std::cout << it->GetCellCoordinate() << std::endl;
+                  path.push_front(it);
+                  it = it->GetParent();
+               }
+               //if the parent of the current cell is itself, the origin has been reached
+               else
+               {
+                  break;
+               }
             }
          }
 
