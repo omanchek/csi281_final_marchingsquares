@@ -69,7 +69,7 @@ NavMesh::~NavMesh()
    delete[] cellGrid;
 }
 
-void NavMesh::DrawNavmesh()
+void NavMesh::BakeNavmesh()
 {
    //create iterators
    int i, j;
@@ -90,8 +90,23 @@ void NavMesh::DrawNavmesh()
          }
 
          //draw based on the sum of overlaps
-         cellGrid[i][j]->DrawCellByOverlapData(dataIt, GRAY, RED, false);
+         //cellGrid[i][j]->DrawCellByOverlapData(dataIt, GRAY, RED, false);
          cellGrid[i][j]->SetOverlapData(dataIt);
+      }
+   }
+}
+
+void NavMesh::DrawNavmesh()
+{
+   //crete iterators
+   int i, j;
+
+   //for each cell
+   for (i = 0; i < horizontal; i++)
+   {
+      for (j = 0; j < vertical; j++)
+      {
+         cellGrid[i][j]->DrawCellByOverlapData(cellGrid[i][j]->GetOverlapData(), GRAY, RED, false);
       }
    }
 }

@@ -38,6 +38,8 @@ class Cell : public Square
       Vector2Int coordinate = Vector2Int();
       OverlapData currentOverlaps = OverlapData();
 
+      int selfCase = 0;
+
       float pathfindingValue;
       Cell* pathParent = nullptr;
 };

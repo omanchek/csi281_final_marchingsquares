@@ -71,7 +71,7 @@ int main()
     }
 
     //setup the navmesh and the initial path that the agent will follow
-    navMesh->DrawNavmesh();
+    navMesh->BakeNavmesh();
     NavPath path = navMesh->GetPathToPoint(Vector2Int(1, 1), Vector2Int(55, 59));
     std::cout << path.GetSize() << std::endl;
 
@@ -101,13 +101,16 @@ int main()
                float deltaLength = sqrt(pow(deltaToFirst.x, 2) + pow(deltaToFirst.y, 2));
 
                //check if within dist to close the shape
-               if (deltaLength < 10 && shapePoints.size() >= 3)
+               if (deltaLength < 20 && shapePoints.size() >= 3)
                {
                   //create a new obstacle based on the points draw, and register it with the navmesh to begin drawing it
                   Obstacle* newObstacle = new Obstacle(shapePoints);
                   obstacles.push_back(newObstacle);
                   navMesh->RegisterObstacle(newObstacle);
                   shapePoints.clear();
+
+                  //rebake the navmesh to include the new obstacle
+                  navMesh->BakeNavmesh();
 
                   //check if the new shape is overlapping the agent, and warp the agent if so
                   if (newObstacle->CheckPointInsideShape(agent.GetCenter(), false))
