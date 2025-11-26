@@ -14,6 +14,11 @@ OverlapData::OverlapData(bool inBL, bool inBR, bool inTL, bool inTR)
    tRight = inTR;
 }
 
+bool OverlapData::AnyOpenings()
+{
+   return (bLeft == false || bRight == false || tLeft == false || tRight == false);
+}
+
 bool OverlapData::AnyOverlaps()
 {
    return (bLeft == true || bRight == true || tLeft == true || tRight == true);

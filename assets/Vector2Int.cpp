@@ -33,12 +33,12 @@ Vector2Int Vector2Int::operator-(const Vector2Int& rhs)
 {
    return Vector2Int(x - rhs.x, y - rhs.y);
 }
-
+/*
 bool operator==(const Vector2Int& lhs, const Vector2Int& rhs)
 {
    return (lhs.x == rhs.x && lhs.y == rhs.y);
 }
-
+*/
 Vector2Int operator+(const Vector2Int& lhs, const Vector2Int& rhs)
 {
    return Vector2Int(lhs.x + rhs.x, lhs.y + rhs.y);

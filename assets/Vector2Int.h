@@ -18,7 +18,7 @@ struct Vector2Int
 };
 
 //general functions
-bool operator==(const Vector2Int& lhs, const Vector2Int& rhs);
+//bool operator==(const Vector2Int& lhs, const Vector2Int& rhs);
 Vector2Int operator+(const Vector2Int& lhs, const Vector2Int& rhs);
 std::ostream& operator<<(std::ostream& lhs, const Vector2Int& rhs);
 

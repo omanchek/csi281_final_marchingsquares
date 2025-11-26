@@ -163,7 +163,7 @@ NavPath NavMesh::GetPathToPoint(Cell* origin, Cell* destination)
 {
    if (origin != destination && origin != nullptr && destination != nullptr)
    {
-      if (!origin->GetOverlapData().AnyOverlaps() && !destination->GetOverlapData().AnyOverlaps())
+      if (origin->GetOverlapData().AnyOpenings() && destination->GetOverlapData().AnyOpenings())
       {
          //create a priority queue for the frontier, and create dictionary to map cells to pathfinding data
          std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>> frontier = std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>();
@@ -240,6 +240,31 @@ bool NavMesh::IsValidCell(Vector2Int tileCoords)
    return (tileCoords >= Vector2Int(0, 0) && tileCoords < Vector2Int(horizontal, vertical));
 }
 
+bool NavMesh::PathBetween(const OverlapData& initial, const OverlapData& next, Vector2Int dir)
+{
+   //go case by case, based on the direction given
+   if (dir.x == 1 && dir.y == 0)
+   {
+      return ((!initial.bRight || !initial.tRight) && (!next.bLeft || !next.tLeft));
+   }
+   else if (dir.x == 0 && dir.y == 1)
+   {
+      return ((!initial.tLeft || !initial.tRight) && (!next.bLeft || !next.bRight));
+   }
+   else if (dir.x == -1 && dir.y == 0)
+   {
+      return ((!initial.bLeft || !initial.tLeft) && (!next.bRight || !next.tRight));
+   }
+   else if (dir.x == 0 && dir.y == -1)
+   {
+      return ((!initial.bLeft || !initial.bRight) && (!next.tLeft || !next.tRight));
+   }
+   else
+   {
+      return false;
+   }
+}
+
 void NavMesh::PushNeighbors(CellData cellData, Cell* dest, std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>& inFrontier, std::unordered_map<Cell*, CellData>& inData)
 {
    //create cell iterator
@@ -254,7 +279,7 @@ void NavMesh::PushNeighbors(CellData cellData, Cell* dest, std::priority_queue<C
       if (it != nullptr)
       {
          //check that the cell has no collisions
-         if (!it->GetOverlapData().AnyOverlaps())
+         if (PathBetween(cellData.mSelf->GetOverlapData(), it->GetOverlapData(), NEIGHBOR_DIR[i]))
          {
             //check if the data map already contains a weight
             if (inData.contains(it))

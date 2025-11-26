@@ -54,6 +54,7 @@ class NavMesh
       NavPath GetPathToPoint(Vector2Int origin, Vector2Int destination);
       NavPath GetPathToPoint(Cell* origin, Cell* destination);
       bool IsValidCell(Vector2Int tileCoords);
+      bool PathBetween(const OverlapData& initial, const OverlapData& next, Vector2Int dir);
       void PushNeighbors(CellData cellData, Cell* dest, std::priority_queue<CellData, std::vector<CellData>, std::greater<CellData>>& inFrontier, std::unordered_map<Cell*, CellData>& inData);
       void RegisterObstacle(Obstacle* inObstacle);
 
