@@ -26,6 +26,24 @@ Obstacle::Obstacle(const Vector2 vertexList[], int vertices)
    CalculateBoundingBox();
 }
 
+Obstacle::Obstacle(std::vector<Vector2> vertexList)
+{
+   //store the number of vertices being inputted
+   numVerts = vertexList.size();
+
+   //init the container for the vertices
+   verts = new Vector2[numVerts];
+
+   //copy over the data
+   for (int i = 0; i < numVerts; i++)
+   {
+      verts[i] = vertexList[i];
+   }
+
+   //run the bounding box calculations
+   CalculateBoundingBox();
+}
+
 Obstacle::~Obstacle()
 {
    //clean up vertex list   

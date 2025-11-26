@@ -2,6 +2,7 @@
 #define OBSTACLE_H
 
 #include <algorithm>
+#include <vector>
 #include "raylib.h"
 #include "Square.h"
 
@@ -10,6 +11,7 @@ class Obstacle
    public:
       Obstacle();
       Obstacle(const Vector2 vertexList[], int vertices);
+      Obstacle(std::vector<Vector2> vertexList);
       ~Obstacle();
 
       OverlapData CheckCollisionOfCell(Square& inSquare);

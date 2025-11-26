@@ -18,6 +18,8 @@ public:
 	void MoveAgent();
    Vector2 GetCenter() { return center; }
 	NavPath& GetPath();
+   void SetCenter(Vector2 pos) { center = pos; }
+   void Stop();
 
 private:
 	NavPath* path;

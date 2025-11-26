@@ -28,21 +28,30 @@ void NavMeshAgent::draw()
 
 void NavMeshAgent::MoveAgent()
 {
-	// Calls the GetNext function
-	path->GetNext();
-	// Checks if the size of the path is greater than zero
-	if (path->GetSize() > 0)
-	{
-		// If so, cets the center of the path the new front
-		center = path->GetFront()->GetCenter();
-	}
+	//check path valid
+   if (path != nullptr)
+   {
+      // Calls the GetNext function
+      path->GetNext();
+      // Checks if the size of the path is greater than zero
+      if (path->GetSize() > 0)
+      {
+         // If so, cets the center of the path the new front
+         center = path->GetFront()->GetCenter();
+      }
 
-	// Pauses the call by 100 milliseconds
-	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      // Pauses the call by 100 milliseconds
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+   }
 }
 
 NavPath& NavMeshAgent::GetPath()
 {
 	// returns the current path
 	return *path;
+}
+
+void NavMeshAgent::Stop()
+{
+   path = nullptr;
 }

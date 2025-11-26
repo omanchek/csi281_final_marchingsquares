@@ -13,6 +13,7 @@ class NavPath
       ~NavPath();
 
       void AddCell(Cell* newCell);
+      void ClearPath();
       void DrawPath();
       Cell* GetFront();
       Cell* GetBack();

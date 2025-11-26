@@ -70,17 +70,65 @@ int main()
       navMesh->RegisterObstacle(obstacles[i]);
     }
 
+    //setup the navmesh and the initial path that the agent will follow
     navMesh->DrawNavmesh();
     NavPath path = navMesh->GetPathToPoint(Vector2Int(1, 1), Vector2Int(55, 59));
     std::cout << path.GetSize() << std::endl;
 
+    //initialize the agent for the first path
     NavMeshAgent agent(path, Vector2(0,0));
+
+    //create storage for additional points used in drawing more obstacles
+    std::vector<Vector2> shapePoints;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         BeginDrawing();
         ClearBackground(BLACK);
+
+        //check if there are points to add for shape draw
+        if (IsMouseButtonPressed(1))
+        {
+           //store the current mouse position
+           Vector2 mousePos = GetMousePosition();
+
+           //check if the point is within the acceptance radius to loop
+           if (shapePoints.size() > 0)
+           {
+               //calculate the difference between this click and the first point
+               Vector2 deltaToFirst = Vector2(shapePoints[0].x - mousePos.x, shapePoints[0].y - mousePos.y);
+               float deltaLength = sqrt(pow(deltaToFirst.x, 2) + pow(deltaToFirst.y, 2));
+
+               //check if within dist to close the shape
+               if (deltaLength < 10 && shapePoints.size() >= 3)
+               {
+                  //create a new obstacle based on the points draw, and register it with the navmesh to begin drawing it
+                  Obstacle* newObstacle = new Obstacle(shapePoints);
+                  obstacles.push_back(newObstacle);
+                  navMesh->RegisterObstacle(newObstacle);
+                  shapePoints.clear();
+
+                  //check if the new shape is overlapping the agent, and warp the agent if so
+                  if (newObstacle->CheckPointInsideShape(agent.GetCenter(), false))
+                  {
+                     agent.SetCenter(navMesh->GetCell(Vector2Int(0,0))->GetCenter());
+                  }
+
+                  //force the agent to stop
+                  agent.Stop();
+                  path.ClearPath();
+               }
+               else
+               {
+                  shapePoints.push_back(mousePos);
+               }
+           }
+           else
+           {
+              shapePoints.push_back(mousePos);
+           }
+        }
 
         //check if the goal has been adjusted
         if (IsMouseButtonPressed(0))
@@ -105,6 +153,15 @@ int main()
         agent.draw();
         // Moves the agent to the next cell
         agent.MoveAgent();
+
+        //draw the in-progress shape if there is one
+        if (shapePoints.size() > 1)
+        {
+           for (int i = 0; i < shapePoints.size() - 1; i++)
+           {
+              DrawLine(shapePoints[i].x, shapePoints[i].y, shapePoints[i + 1].x, shapePoints[i + 1].y, RED);
+           }
+        }
 
         EndDrawing();
     }

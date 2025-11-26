@@ -26,6 +26,11 @@ void NavPath::AddCell(Cell* newCell)
    pathNodes.push_back(newCell);
 }
 
+void NavPath::ClearPath()
+{
+   pathNodes.clear();
+}
+
 void NavPath::DrawPath()
 {
    //create iterators
