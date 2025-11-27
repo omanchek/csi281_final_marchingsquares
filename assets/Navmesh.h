@@ -45,7 +45,7 @@ class NavMesh
       ~NavMesh();
 
       void BakeNavmesh();
-      void DrawNavmesh();
+      void DrawNavmesh(bool debugDraw);
 
       float EstDist(Vector2Int diff);
       Cell* GetCell(int x, int y);

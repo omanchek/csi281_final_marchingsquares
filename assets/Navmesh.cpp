@@ -96,7 +96,7 @@ void NavMesh::BakeNavmesh()
    }
 }
 
-void NavMesh::DrawNavmesh()
+void NavMesh::DrawNavmesh(bool debugDraw)
 {
    //crete iterators
    int i, j;
@@ -106,7 +106,7 @@ void NavMesh::DrawNavmesh()
    {
       for (j = 0; j < vertical; j++)
       {
-         cellGrid[i][j]->DrawCellByOverlapData(cellGrid[i][j]->GetOverlapData(), GRAY, RED, false);
+         cellGrid[i][j]->DrawCellByOverlapData(cellGrid[i][j]->GetOverlapData(), GRAY, RED, debugDraw);
       }
    }
 }

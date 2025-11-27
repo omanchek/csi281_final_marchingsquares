@@ -143,13 +143,16 @@ int main()
         }
 
         //draw the navmesh
-        navMesh->DrawNavmesh();        
+        navMesh->DrawNavmesh(IsKeyDown(KEY_D));        
         path.DrawPath();
 
         //draw in the actual obstacles
         for (int i = 0; i < obstacles.size(); i++)
         {
            obstacles[i]->DrawObstacle();
+
+           //check if should draw the bounding box
+           if (IsKeyDown(KEY_B)) obstacles[i]->DrawBoundingBox();
         }
 
         // Draws the agent that moves around the navmesh

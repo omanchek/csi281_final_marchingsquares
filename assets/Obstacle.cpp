@@ -111,11 +111,11 @@ void Obstacle::DrawObstacle()
    for (i = 0; i < numVerts - 1; i++)
    {
       //draw a line from this point to the next
-      DrawLine(verts[i].x, verts[i].y, verts[i + 1].x, verts[i + 1].y, GREEN);
+      DrawLine(verts[i].x, verts[i].y, verts[i + 1].x, verts[i + 1].y, BLUE);
    }
 
    //draw final line
-   DrawLine(verts[i].x, verts[i].y, verts[0].x, verts[0].y, GREEN);
+   DrawLine(verts[i].x, verts[i].y, verts[0].x, verts[0].y, BLUE);
 }
 
 bool Obstacle::CalculateBoundingBox()
