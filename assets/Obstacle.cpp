@@ -65,6 +65,13 @@ OverlapData Obstacle::CheckCollisionOfCell(Square& inSquare)
    return overlaps;
 }
 
+/*
+Wikimedia Contributors. “Point in Polygon.” Wikipedia, 6 July 2025. Wikipedia,
+   https://en.wikipedia.org/w/index.php?title=Point_in_polygon&oldid=1299174796#Ray_casting_algorithm.
+
+   used as reference to understand the raycasting algorithm approach to determining if a point is inside of or outside of a polygon
+*/
+
 bool Obstacle::CheckPointInsideShape(Vector2 point, bool debugPrint)
 {
    //create a tracker for number of hits

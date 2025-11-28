@@ -159,6 +159,13 @@ NavPath NavMesh::GetPathToPoint(Vector2Int origin, Vector2Int destination)
    return GetPathToPoint(GetCell(origin), GetCell(destination));
 }
 
+/*
+Patel, Amit J. Introduction to the A* Algorithm. Red Blob Games, 2014. www.redblobgames.com,
+   https://www.redblobgames.com/a-star/introduction.html.
+
+   used to help better understand how the a* pathfinding algorithm works
+*/
+
 NavPath NavMesh::GetPathToPoint(Cell* origin, Cell* destination)
 {
    if (origin != destination && origin != nullptr && destination != nullptr)

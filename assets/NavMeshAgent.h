@@ -4,8 +4,10 @@
 #include "Navmesh.h"
 #include <raylib.h>
 /*
-* Used this forum thread to figure out how to delay the program for a certain amount of time
-* https://stackoverflow.com/questions/158585/how-do-you-add-a-timed-delay-to-a-c-program
+bames53. “Answer to ‘How do you add a timed delay to a C++ program?’” Stack Overflow, 17 Mar. 2012,
+   https://stackoverflow.com/a/9747668.
+
+   used this forum thread to figure out how to delay the program for a certain amount of time
 */
 #include <chrono>
 #include <thread>

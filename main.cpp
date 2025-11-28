@@ -8,8 +8,26 @@
 #include "assets/Cell.h"
 
 /*
-* Used this forum thread to figure out how to delay the program for a certain amount of time
-* https://stackoverflow.com/questions/158585/how-do-you-add-a-timed-delay-to-a-c-program
+bames53. “Answer to ‘How do you add a timed delay to a C++ program?’” Stack Overflow, 17 Mar. 2012,
+   https://stackoverflow.com/a/9747668.
+
+   used this forum thread to figure out how to delay the program for a certain amount of time
+
+cppreference.com.
+   https://en.cppreference.com/index.html.
+
+   used project-wide for reference on different standard library functionality in c++ for use in implementing the algorithms
+
+“Marching Squares.” Wikipedia, 3 Oct. 2025. Wikipedia,
+   https://en.wikipedia.org/w/index.php?title=Marching_squares&oldid=1314770732.
+
+   used project-wide for reference on how the Marching Squares algorithm works, and as consultation when figuring out the best approach
+   to attempt to implement the algorithm
+
+“raylib - cheatsheet.” raylib,
+   https://www.raylib.com.
+
+   used project wide for reference on different methods available in the raylib library for use in implementation
 */
 #include <chrono>
 #include <thread>
