@@ -45,7 +45,7 @@ void NavPath::DrawPath()
       {
          c1 = oneBehind->GetCenter();
          c2 = it->GetCenter();
-         DrawLine(c1.x, c1.y, c2.x, c2.y, GREEN);
+         DrawLine(c1.x, c1.y, c2.x, c2.y, DARKGREEN);
       }
 
       //increment oneBehind

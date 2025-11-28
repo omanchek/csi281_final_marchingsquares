@@ -54,7 +54,8 @@ bool Cell::DrawCellByCase(unsigned int caseValue, Color walkable, Color blocked,
    switch (caseValue)
    {
       case 0:
-        return false;
+        DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);
+        break;
       case 1:
         // Draws case 2 square
         DrawRectangle(bottomLeft.x, topRight.y, (bottomRight.x - bottomLeft.x), (bottomRight.y - topRight.y), blocked);

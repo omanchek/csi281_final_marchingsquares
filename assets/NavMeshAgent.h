@@ -25,7 +25,7 @@ private:
 	NavPath* path;
 	Vector2 center;
 	float radius;
-	Color color = PINK;
+	Color color = BLUE;
 };
 
 

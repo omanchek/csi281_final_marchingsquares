@@ -106,7 +106,7 @@ void NavMesh::DrawNavmesh(bool debugDraw)
    {
       for (j = 0; j < vertical; j++)
       {
-         cellGrid[i][j]->DrawCellByOverlapData(cellGrid[i][j]->GetOverlapData(), GRAY, RED, debugDraw);
+         cellGrid[i][j]->DrawCellByOverlapData(cellGrid[i][j]->GetOverlapData(), LIGHTGRAY, MAROON, debugDraw);
       }
    }
 }
